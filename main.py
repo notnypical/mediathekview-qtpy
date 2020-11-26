@@ -28,6 +28,11 @@ from main_window import MainWindow
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
+    app.setOrganizationName('NotNypical')
+    app.setOrganizationDomain('https://notnypical.github.io')
+    app.setApplicationName('MediathekView-QtPy')
+    app.setApplicationDisplayName('MediathekView-QtPy')
+    app.setApplicationVersion('0.1.0')
 
     window = MainWindow()
     window.show()

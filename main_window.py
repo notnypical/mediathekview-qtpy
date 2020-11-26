@@ -18,8 +18,9 @@
 # along with MediathekView-QtPy.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+from PySide2.QtCore import QByteArray, QRect
 from PySide2.QtGui import QIcon
-from PySide2.QtWidgets import QMainWindow
+from PySide2.QtWidgets import QApplication, QMainWindow
 
 import resources
 
@@ -30,3 +31,20 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
+
+        self.setWindowGeometry(QByteArray())
+
+
+    def setWindowGeometry(self, geometry):
+
+        if geometry:
+            self.restoreGeometry(geometry)
+        else:
+            availableGeometry = QRect(QApplication.desktop().availableGeometry(self))
+            self.resize(availableGeometry.width() * 2/3, availableGeometry.height() * 2/3)
+            self.move((availableGeometry.width() - self.width()) / 2, (availableGeometry.height() - self.height()) / 2)
+
+
+    def windowGeometry(self):
+
+        return self.saveGeometry()

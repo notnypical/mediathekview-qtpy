@@ -48,3 +48,14 @@ class MainWindow(QMainWindow):
     def windowGeometry(self):
 
         return self.saveGeometry()
+
+
+    def setWindowState(self, state):
+
+        if state:
+            self.restoreState(state)
+
+
+    def windowState(self):
+
+        self.saveState()

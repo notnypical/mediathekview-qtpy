@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icons/apps/16">
+        <file alias="mediathekview.svg">icons/apps/16/mediathekview.svg</file>
+    </qresource>
+    <qresource prefix="/icons/apps/22">
+        <file alias="mediathekview.svg">icons/apps/22/mediathekview.svg</file>
+    </qresource>
+</RCC>

@@ -18,10 +18,15 @@
 # along with MediathekView-QtPy.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QMainWindow
+
+import resources
 
 
 class MainWindow(QMainWindow):
 
     def __init__(self):
         QMainWindow.__init__(self)
+
+        self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))

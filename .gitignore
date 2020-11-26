@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Python byte code
+*.pyc
+
+# Qt stuff
+*.pyproject.user
+resources.py

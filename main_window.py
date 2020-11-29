@@ -19,7 +19,7 @@
 #
 
 from PySide2.QtCore import QByteArray, QRect
-from PySide2.QtGui import QIcon
+from PySide2.QtGui import QIcon, QKeySequence
 from PySide2.QtWidgets import QAction, QApplication, QMainWindow, QMenuBar, QToolBar
 
 import resources
@@ -59,6 +59,13 @@ class MainWindow(QMainWindow):
         self.actionPreferences.setToolTip('Customize the appearance and behavior of the application')
         self.actionPreferences.triggered.connect(self.onActionPreferencesTriggered)
 
+        self.actionQuit = QAction('Quit', self)
+        self.actionQuit.setObjectName('actionQuit')
+        self.actionQuit.setIcon(QIcon.fromTheme('application-exit', QIcon(':/icons/actions/16/application-exit.svg')))
+        self.actionQuit.setShortcut(QKeySequence.Quit)
+        self.actionQuit.setToolTip(f'Quit the application [{self.actionQuit.shortcut().toString(QKeySequence.NativeText)}]')
+        self.actionQuit.triggered.connect(self.close)
+
 
     def createMenus(self):
 
@@ -69,6 +76,8 @@ class MainWindow(QMainWindow):
         menuApplication.addAction(self.actionColophon)
         menuApplication.addSeparator()
         menuApplication.addAction(self.actionPreferences)
+        menuApplication.addSeparator()
+        menuApplication.addAction(self.actionQuit)
 
 
     def createToolbars(self):
@@ -78,6 +87,8 @@ class MainWindow(QMainWindow):
         toolbarApplication.setObjectName('toolbarApplication')
         toolbarApplication.addAction(self.actionAbout)
         toolbarApplication.addAction(self.actionPreferences)
+        toolbarApplication.addSeparator()
+        toolbarApplication.addAction(self.actionQuit)
 
 
     def setWindowGeometry(self, geometry):

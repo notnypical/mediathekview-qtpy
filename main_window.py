@@ -20,7 +20,7 @@
 
 from PySide2.QtCore import QByteArray, QRect
 from PySide2.QtGui import QIcon
-from PySide2.QtWidgets import QApplication, QMainWindow, QMenuBar, QToolBar
+from PySide2.QtWidgets import QAction, QApplication, QMainWindow, QMenuBar, QToolBar
 
 import resources
 
@@ -32,10 +32,20 @@ class MainWindow(QMainWindow):
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 
+        self.createActions()
         self.createMenus()
         self.createToolbars()
 
         self.setWindowGeometry(QByteArray())
+
+
+    def createActions(self):
+
+        # Actions: Application
+        self.actionAbout = QAction(f'About {QApplication.applicationName()}', self)
+        self.actionAbout.setIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
+        self.actionAbout.setToolTip('Brief description of the application')
+        self.actionAbout.triggered.connect(self.onActionAboutTriggered)
 
 
     def createMenus(self):
@@ -43,6 +53,7 @@ class MainWindow(QMainWindow):
         # Menu: Application
         menuApplication = self.menuBar().addMenu('Application')
         menuApplication.setObjectName('menuApplication')
+        menuApplication.addAction(self.actionAbout)
 
 
     def createToolbars(self):
@@ -50,6 +61,7 @@ class MainWindow(QMainWindow):
         # Toolbar: Application
         toolbarApplication = self.addToolBar('Application')
         toolbarApplication.setObjectName('toolbarApplication')
+        toolbarApplication.addAction(self.actionAbout)
 
 
     def setWindowGeometry(self, geometry):
@@ -76,3 +88,7 @@ class MainWindow(QMainWindow):
     def windowState(self):
 
         self.saveState()
+
+
+    def onActionAboutTriggered(self):
+        pass

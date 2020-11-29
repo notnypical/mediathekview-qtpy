@@ -20,7 +20,7 @@
 
 from PySide2.QtCore import QByteArray, QRect
 from PySide2.QtGui import QIcon
-from PySide2.QtWidgets import QApplication, QMainWindow
+from PySide2.QtWidgets import QApplication, QMainWindow, QMenuBar, QToolBar
 
 import resources
 
@@ -32,7 +32,24 @@ class MainWindow(QMainWindow):
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 
+        self.createMenus()
+        self.createToolbars()
+
         self.setWindowGeometry(QByteArray())
+
+
+    def createMenus(self):
+
+        # Menu: Application
+        menuApplication = self.menuBar().addMenu('Application')
+        menuApplication.setObjectName('menuApplication')
+
+
+    def createToolbars(self):
+
+        # Toolbar: Application
+        toolbarApplication = self.addToolBar('Application')
+        toolbarApplication.setObjectName('toolbarApplication')
 
 
     def setWindowGeometry(self, geometry):

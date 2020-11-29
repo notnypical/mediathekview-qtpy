@@ -1,4 +1,7 @@
 <RCC>
+    <qresource prefix="/icons/actions/16">
+        <file alias="application-configure.svg">icons/actions/16/application-configure.svg</file>
+    </qresource>
     <qresource prefix="/icons/apps/16">
         <file alias="mediathekview.svg">icons/apps/16/mediathekview.svg</file>
     </qresource>

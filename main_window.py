@@ -53,6 +53,12 @@ class MainWindow(QMainWindow):
         self.actionColophon.setToolTip('Lengthy description of the application')
         self.actionColophon.triggered.connect(self.onActionColophonTriggered)
 
+        self.actionPreferences = QAction('Preferences…', self)
+        self.actionPreferences.setObjectName('actionPreferences')
+        self.actionPreferences.setIcon(QIcon.fromTheme('configure', QIcon(':/icons/actions/16/application-configure.svg')))
+        self.actionPreferences.setToolTip('Customize the appearance and behavior of the application')
+        self.actionPreferences.triggered.connect(self.onActionPreferencesTriggered)
+
 
     def createMenus(self):
 
@@ -61,6 +67,8 @@ class MainWindow(QMainWindow):
         menuApplication.setObjectName('menuApplication')
         menuApplication.addAction(self.actionAbout)
         menuApplication.addAction(self.actionColophon)
+        menuApplication.addSeparator()
+        menuApplication.addAction(self.actionPreferences)
 
 
     def createToolbars(self):
@@ -69,6 +77,7 @@ class MainWindow(QMainWindow):
         toolbarApplication = self.addToolBar('Application')
         toolbarApplication.setObjectName('toolbarApplication')
         toolbarApplication.addAction(self.actionAbout)
+        toolbarApplication.addAction(self.actionPreferences)
 
 
     def setWindowGeometry(self, geometry):
@@ -102,4 +111,8 @@ class MainWindow(QMainWindow):
 
 
     def onActionColophonTriggered(self):
+        pass
+
+
+    def onActionPreferencesTriggered(self):
         pass

@@ -43,9 +43,15 @@ class MainWindow(QMainWindow):
 
         # Actions: Application
         self.actionAbout = QAction(f'About {QApplication.applicationName()}', self)
+        self.actionAbout.setObjectName('actionAbout')
         self.actionAbout.setIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
         self.actionAbout.setToolTip('Brief description of the application')
         self.actionAbout.triggered.connect(self.onActionAboutTriggered)
+
+        self.actionColophon = QAction('Colophon', self)
+        self.actionColophon.setObjectName('actionColophon')
+        self.actionColophon.setToolTip('Lengthy description of the application')
+        self.actionColophon.triggered.connect(self.onActionColophonTriggered)
 
 
     def createMenus(self):
@@ -54,6 +60,7 @@ class MainWindow(QMainWindow):
         menuApplication = self.menuBar().addMenu('Application')
         menuApplication.setObjectName('menuApplication')
         menuApplication.addAction(self.actionAbout)
+        menuApplication.addAction(self.actionColophon)
 
 
     def createToolbars(self):
@@ -91,4 +98,8 @@ class MainWindow(QMainWindow):
 
 
     def onActionAboutTriggered(self):
+        pass
+
+
+    def onActionColophonTriggered(self):
         pass

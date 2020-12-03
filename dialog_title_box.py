@@ -18,10 +18,35 @@
 # along with Tabulator-QtPy.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-from PySide2.QtWidgets import QWidget
+from PySide2.QtSvg import QSvgWidget
+from PySide2.QtWidgets import QApplication, QHBoxLayout, QLabel, QVBoxLayout, QWidget
 
 
 class DialogTitleBox(QWidget):
 
     def __init__(self, parent=None):
         super(DialogTitleBox, self).__init__(parent)
+
+        logo = QSvgWidget()
+        logo.load(':/icons/apps/22/mediathekview.svg')
+
+        name = QLabel(f'<strong style="font-size:large;">{QApplication.applicationName()}</strong> v{QApplication.applicationVersion()}')
+        description = QLabel('A front-end tool for the MediathekView database')
+
+        labels = QVBoxLayout()
+        labels.addWidget(name)
+        labels.addWidget(description)
+
+        # Main layout
+        self.layout = QHBoxLayout(self)
+        self.layout.addWidget(logo)
+        self.layout.addLayout(labels)
+
+        # Set logo size
+        height = name.sizeHint().height() + labels.layout().spacing() + description.sizeHint().height()
+        logo.setFixedSize(height, height)
+
+
+    def setZeroMargins(self):
+
+        self.layout.setContentsMargins(0, 0, 0, 0)

@@ -22,6 +22,8 @@ from PySide2.QtCore import QByteArray, QRect
 from PySide2.QtGui import QIcon, QKeySequence
 from PySide2.QtWidgets import QAction, QApplication, QMainWindow, QMenuBar, QToolBar
 
+from about_dialog import AboutDialog
+
 import resources
 
 
@@ -118,7 +120,12 @@ class MainWindow(QMainWindow):
 
 
     def onActionAboutTriggered(self):
-        pass
+
+        geometry = QByteArray()
+
+        dialog = AboutDialog(self)
+        dialog.setDialogGeometry(geometry)
+        dialog.exec_()
 
 
     def onActionColophonTriggered(self):

@@ -2,6 +2,7 @@
     "files": [
         "about_dialog.py",
         "colophon_dialog.py",
+        "dialog_title_box.py",
         "main.py",
         "main_window.py",
         "resources.qrc"

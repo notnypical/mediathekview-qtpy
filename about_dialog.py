@@ -21,6 +21,8 @@
 from PySide2.QtCore import QByteArray, Qt
 from PySide2.QtWidgets import QApplication, QDialog, QDialogButtonBox, QVBoxLayout
 
+from dialog_title_box import DialogTitleBox
+
 
 class AboutDialog(QDialog):
 
@@ -32,6 +34,9 @@ class AboutDialog(QDialog):
 
         self.setDialogGeometry(QByteArray())
 
+        # Title box
+        titleBox = DialogTitleBox()
+
 
         # Button box
         buttonBox = QDialogButtonBox(QDialogButtonBox.Close)
@@ -39,6 +44,7 @@ class AboutDialog(QDialog):
 
         # Main layout
         layout = QVBoxLayout(self)
+        layout.addWidget(titleBox)
         layout.addWidget(buttonBox)
 
 

@@ -23,6 +23,7 @@ from PySide2.QtGui import QIcon, QKeySequence
 from PySide2.QtWidgets import QAction, QApplication, QMainWindow, QMenuBar, QToolBar
 
 from about_dialog import AboutDialog
+from colophon_dialog import ColophonDialog
 
 import resources
 
@@ -129,7 +130,12 @@ class MainWindow(QMainWindow):
 
 
     def onActionColophonTriggered(self):
-        pass
+
+        geometry = QByteArray()
+
+        dialog = ColophonDialog(self)
+        dialog.setDialogGeometry(geometry)
+        dialog.exec_()
 
 
     def onActionPreferencesTriggered(self):

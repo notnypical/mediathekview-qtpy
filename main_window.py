@@ -18,7 +18,7 @@
 # along with MediathekView-QtPy.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-from PySide2.QtCore import QByteArray, QRect
+from PySide2.QtCore import QByteArray, QRect, Qt
 from PySide2.QtGui import QIcon, QKeySequence
 from PySide2.QtWidgets import QAction, QApplication, QMainWindow
 
@@ -40,6 +40,8 @@ class MainWindow(QMainWindow):
         self.createToolbars()
 
         self.setApplicationGeometry(QByteArray())
+
+        self.updateActionFullScreen()
 
 
     def createActions(self):
@@ -69,6 +71,26 @@ class MainWindow(QMainWindow):
         self.actionQuit.setToolTip(f'Quit the application [{self.actionQuit.shortcut().toString(QKeySequence.NativeText)}]')
         self.actionQuit.triggered.connect(self.close)
 
+        # Actions: View
+        self.actionFullScreen = QAction(self)
+        self.actionFullScreen.setCheckable(True)
+        self.actionFullScreen.setShortcuts([QKeySequence(Qt.Key_F11), QKeySequence.FullScreen])
+        self.actionFullScreen.triggered.connect(self.onActionFullScreenTriggered)
+
+
+    def updateActionFullScreen(self):
+
+        if not self.isFullScreen():
+            self.actionFullScreen.setText('Full Screen Mode')
+            self.actionFullScreen.setIcon(QIcon.fromTheme('view-fullscreen', QIcon(':/icons/actions/16/view-fullscreen.svg')))
+            self.actionFullScreen.setChecked(False)
+            self.actionFullScreen.setToolTip(f'Display the window in full screen [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]')
+        else:
+            self.actionFullScreen.setText('Exit Full Screen Mode')
+            self.actionFullScreen.setIcon(QIcon.fromTheme('view-restore', QIcon(':/icons/actions/16/view-restore.svg')))
+            self.actionFullScreen.setChecked(True)
+            self.actionFullScreen.setToolTip(f'Exit the full screen mode [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]')
+
 
     def createMenus(self):
 
@@ -85,6 +107,7 @@ class MainWindow(QMainWindow):
         # Menu: View
         menuView = self.menuBar().addMenu('View')
         menuView.setObjectName('menuView')
+        menuView.addAction(self.actionFullScreen)
 
 
     def createToolbars(self):
@@ -100,6 +123,7 @@ class MainWindow(QMainWindow):
         # Toolbar: View
         toolbarView = self.addToolBar('View')
         toolbarView.setObjectName('toolbarView')
+        toolbarView.addAction(self.actionFullScreen)
 
 
     def setApplicationGeometry(self, geometry):
@@ -148,3 +172,13 @@ class MainWindow(QMainWindow):
 
     def onActionPreferencesTriggered(self):
         pass
+
+
+    def onActionFullScreenTriggered(self):
+
+        if not self.isFullScreen():
+            self.setWindowState(self.windowState() | Qt.WindowFullScreen)
+        else:
+            self.setWindowState(self.windowState() & ~Qt.WindowFullScreen)
+
+        self.updateActionFullScreen()

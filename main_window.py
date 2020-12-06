@@ -50,23 +50,27 @@ class MainWindow(QMainWindow):
         self.actionAbout = QAction(f'About {QApplication.applicationName()}', self)
         self.actionAbout.setObjectName('actionAbout')
         self.actionAbout.setIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
+        self.actionAbout.setIconText('About')
         self.actionAbout.setToolTip('Brief description of the application')
         self.actionAbout.triggered.connect(self.onActionAboutTriggered)
 
         self.actionColophon = QAction('Colophon', self)
         self.actionColophon.setObjectName('actionColophon')
+        self.actionColophon.setIconText('Colophon')
         self.actionColophon.setToolTip('Lengthy description of the application')
         self.actionColophon.triggered.connect(self.onActionColophonTriggered)
 
         self.actionPreferences = QAction('Preferences…', self)
         self.actionPreferences.setObjectName('actionPreferences')
         self.actionPreferences.setIcon(QIcon.fromTheme('configure', QIcon(':/icons/actions/16/application-configure.svg')))
+        self.actionPreferences.setIconText('Preferences')
         self.actionPreferences.setToolTip('Customize the appearance and behavior of the application')
         self.actionPreferences.triggered.connect(self.onActionPreferencesTriggered)
 
         self.actionQuit = QAction('Quit', self)
         self.actionQuit.setObjectName('actionQuit')
         self.actionQuit.setIcon(QIcon.fromTheme('application-exit', QIcon(':/icons/actions/16/application-exit.svg')))
+        self.actionQuit.setIconText('Quit')
         self.actionQuit.setShortcut(QKeySequence.Quit)
         self.actionQuit.setToolTip(f'Quit the application [{self.actionQuit.shortcut().toString(QKeySequence.NativeText)}]')
         self.actionQuit.triggered.connect(self.close)
@@ -74,6 +78,7 @@ class MainWindow(QMainWindow):
         # Actions: View
         self.actionFullScreen = QAction(self)
         self.actionFullScreen.setCheckable(True)
+        self.actionFullScreen.setIconText('Full Screen')
         self.actionFullScreen.setShortcuts([QKeySequence(Qt.Key_F11), QKeySequence.FullScreen])
         self.actionFullScreen.triggered.connect(self.onActionFullScreenTriggered)
 

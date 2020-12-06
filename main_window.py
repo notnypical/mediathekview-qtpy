@@ -20,7 +20,7 @@
 
 from PySide2.QtCore import QByteArray, QRect
 from PySide2.QtGui import QIcon, QKeySequence
-from PySide2.QtWidgets import QAction, QApplication, QMainWindow, QMenuBar, QToolBar
+from PySide2.QtWidgets import QAction, QApplication, QMainWindow
 
 from about_dialog import AboutDialog
 from colophon_dialog import ColophonDialog
@@ -82,6 +82,10 @@ class MainWindow(QMainWindow):
         menuApplication.addSeparator()
         menuApplication.addAction(self.actionQuit)
 
+        # Menu: View
+        menuView = self.menuBar().addMenu('View')
+        menuView.setObjectName('menuView')
+
 
     def createToolbars(self):
 
@@ -92,6 +96,10 @@ class MainWindow(QMainWindow):
         toolbarApplication.addAction(self.actionPreferences)
         toolbarApplication.addSeparator()
         toolbarApplication.addAction(self.actionQuit)
+
+        # Toolbar: View
+        toolbarView = self.addToolBar('View')
+        toolbarView.setObjectName('toolbarView')
 
 
     def setApplicationGeometry(self, geometry):

@@ -39,7 +39,7 @@ class MainWindow(QMainWindow):
         self.createMenus()
         self.createToolbars()
 
-        self.setWindowGeometry(QByteArray())
+        self.setApplicationGeometry(QByteArray())
 
 
     def createActions(self):
@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
         toolbarApplication.addAction(self.actionQuit)
 
 
-    def setWindowGeometry(self, geometry):
+    def setApplicationGeometry(self, geometry):
 
         if geometry:
             self.restoreGeometry(geometry)
@@ -104,18 +104,18 @@ class MainWindow(QMainWindow):
             self.move((availableGeometry.width() - self.width()) / 2, (availableGeometry.height() - self.height()) / 2)
 
 
-    def windowGeometry(self):
+    def applicationGeometry(self):
 
         return self.saveGeometry()
 
 
-    def setWindowState(self, state):
+    def setApplicationState(self, state):
 
         if state:
             self.restoreState(state)
 
 
-    def windowState(self):
+    def applicationState(self):
 
         self.saveState()
 

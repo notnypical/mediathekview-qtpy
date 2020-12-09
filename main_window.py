@@ -90,6 +90,13 @@ class MainWindow(QMainWindow):
         self.actionToolbarApplication.setToolTip(self.tr('Display the Application toolbar'))
         self.actionToolbarApplication.toggled.connect(lambda checked: self.toolbarApplication.setVisible(checked))
 
+        self.actionToolbarChannels = QAction(self.tr('Show Channels Toolbar'), self)
+        self.actionToolbarChannels.setObjectName('actionToolbarChannels')
+        self.actionToolbarChannels.setCheckable(True)
+        self.actionToolbarChannels.setChecked(True)
+        self.actionToolbarChannels.setToolTip(self.tr('Display the Channels toolbar'))
+        self.actionToolbarChannels.toggled.connect(lambda checked: self.toolbarChannels.setVisible(checked))
+
         self.actionToolbarView = QAction(self.tr('Show View Toolbar'), self)
         self.actionToolbarView.setObjectName('actionToolbarView')
         self.actionToolbarView.setCheckable(True)
@@ -134,6 +141,7 @@ class MainWindow(QMainWindow):
         menuView.addAction(self.actionFullScreen)
         menuView.addSeparator()
         menuView.addAction(self.actionToolbarApplication)
+        menuView.addAction(self.actionToolbarChannels)
         menuView.addAction(self.actionToolbarView)
 
 
@@ -151,6 +159,7 @@ class MainWindow(QMainWindow):
         # Toolbar: Channels
         self.toolbarChannels = self.addToolBar(self.tr('View Channels'))
         self.toolbarChannels.setObjectName('toolbarChannels')
+        self.toolbarChannels.visibilityChanged.connect(lambda visible: self.actionToolbarChannels.setChecked(visible))
 
         # Toolbar: View
         self.toolbarView = self.addToolBar(self.tr('View Toolbar'))

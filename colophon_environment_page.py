@@ -42,7 +42,7 @@ class ColophonEnvironmentPage(QWidget):
         textBox.setFrameStyle(QFrame.NoFrame)
         textBox.setStyleSheet('background-color:transparent;')
         textBox.setOpenExternalLinks(True)
-        textBox.setHtml(f'''<html><body><dl>
+        textBox.setHtml(self.tr(f'''<html><body><dl>
             <dt><strong>Application version</strong></dt>
                 <dd>{QApplication.applicationVersion()}</dd>
             <dt><strong>Qt for Python version</strong></dt>
@@ -51,7 +51,7 @@ class ColophonEnvironmentPage(QWidget):
                 <dd>{pythonVersion}</dd>
             <dt><strong>Operation System</strong></dt>
                 <dd>{osName} (Kernel {osKernelVersion} on {osCpuArchitecture})</dd>
-            </dl></body></html>''')
+            </dl></body></html>'''))
 
         # Main layout
         self.layout = QVBoxLayout(self)
@@ -60,7 +60,7 @@ class ColophonEnvironmentPage(QWidget):
 
     def title(self):
 
-        return 'Environment'
+        return self.tr('Environment')
 
 
     def setZeroMargins(self):

@@ -35,7 +35,7 @@ class ColophonDialog(QDialog):
         super(ColophonDialog, self).__init__(parent)
 
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
-        self.setWindowTitle('Colophon')
+        self.setWindowTitle(self.tr('Colophon'))
 
         self.setDialogGeometry(QByteArray())
 

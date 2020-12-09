@@ -30,12 +30,12 @@ class ColophonCreditsPage(QWidget):
         textBox.setFrameStyle(QFrame.NoFrame)
         textBox.setStyleSheet('background-color:transparent;')
         textBox.setOpenExternalLinks(True)
-        textBox.setHtml('''<html><body><dl>
+        textBox.setHtml(self.tr('''<html><body><dl>
             <dt><strong>BreezeIcons project</strong></dt>
                 <dd>Application logo and icons made by <a href="https://api.kde.org/frameworks/breeze-icons/html/" title="Visit project's homepage">BreezeIcons project</a>
                     from <a href="https://kde.org" title="Visit organization's homepage">KDE</a>
                     are licensed under <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html" title="GNU Lesser General Public License Version 3">LGPLv3</a>.</dd>
-            </dl></body></html>''')
+            </dl></body></html>'''))
 
         # Main layout
         self.layout = QVBoxLayout(self)
@@ -44,7 +44,7 @@ class ColophonCreditsPage(QWidget):
 
     def title(self):
 
-        return 'Credits'
+        return self.tr('Credits')
 
 
     def setZeroMargins(self):

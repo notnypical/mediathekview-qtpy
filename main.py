@@ -20,7 +20,7 @@
 
 import sys
 
-from PySide2.QtCore import QCommandLineParser
+from PySide2.QtCore import QCommandLineParser, QCoreApplication
 from PySide2.QtWidgets import QApplication
 
 from main_window import MainWindow
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     app.setApplicationVersion('0.1.0')
 
     parser = QCommandLineParser()
-    parser.setApplicationDescription(f'{app.applicationName()} - A front-end tool for the MediathekView database')
+    parser.setApplicationDescription(QCoreApplication.translate('main', f'{app.applicationName()} - A front-end tool for the MediathekView database'))
     parser.addHelpOption()
     parser.addVersionOption()
     parser.process(app)

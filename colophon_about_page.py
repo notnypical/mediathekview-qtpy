@@ -30,11 +30,11 @@ class ColophonAboutPage(QWidget):
         textBox.setFrameStyle(QFrame.NoFrame)
         textBox.setStyleSheet('background-color:transparent;')
         textBox.setOpenExternalLinks(True)
-        textBox.setHtml(f'''<html><body>
+        textBox.setHtml(self.tr(f'''<html><body>
             <p>{QApplication.applicationName()} is an open source front-end tool written in Qt for Python and designed for easy access to the <a href="https://mediathekview.de">MediathekView</a> database.</p>
             <p>Copyright &copy; 2020 <a href="{QApplication.organizationDomain()}">{QApplication.organizationName()}</a>.</p>
             <p>This application is licensed under the terms of the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License, version 3</a>.</p>
-            </body></html>''')
+            </body></html>'''))
 
         # Main layout
         self.layout = QVBoxLayout(self)
@@ -43,7 +43,7 @@ class ColophonAboutPage(QWidget):
 
     def title(self):
 
-        return 'About'
+        return self.tr('About')
 
 
     def setZeroMargins(self):

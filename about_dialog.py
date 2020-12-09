@@ -31,7 +31,7 @@ class AboutDialog(QDialog):
         super(AboutDialog, self).__init__(parent)
 
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
-        self.setWindowTitle(f'About {QApplication.applicationName()}')
+        self.setWindowTitle(self.tr(f'About {QApplication.applicationName()}'))
 
         self.setDialogGeometry(QByteArray())
 

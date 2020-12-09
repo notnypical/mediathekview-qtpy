@@ -30,7 +30,7 @@ class ColophonLicensePage(QWidget):
         textBox.setFrameStyle(QFrame.NoFrame)
         textBox.setStyleSheet('background-color:transparent;')
         textBox.setOpenExternalLinks(True)
-        textBox.setHtml(f'''<html><body>
+        textBox.setHtml(self.tr(f'''<html><body>
             <p>{QApplication.applicationName()} is free software: you can redistribute it and/or modify it under the terms of the
                 GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
                 or (at your option) any later version.</p>
@@ -39,7 +39,7 @@ class ColophonLicensePage(QWidget):
                 See the GNU General Public License for more details.</p>
             <p>You should have received a copy of the GNU General Public License along with {QApplication.applicationName()}.
                 If not, see <a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>.</p>
-            </body></html>''')
+            </body></html>'''))
 
         # Main layout
         self.layout = QVBoxLayout(self)
@@ -48,7 +48,7 @@ class ColophonLicensePage(QWidget):
 
     def title(self):
 
-        return 'License'
+        return self.tr('License')
 
 
     def setZeroMargins(self):

@@ -48,74 +48,74 @@ class MainWindow(QMainWindow):
     def createActions(self):
 
         # Actions: Application
-        self.actionAbout = QAction(f'About {QApplication.applicationName()}', self)
+        self.actionAbout = QAction(self.tr(f'About {QApplication.applicationName()}'), self)
         self.actionAbout.setObjectName('actionAbout')
         self.actionAbout.setIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
-        self.actionAbout.setIconText('About')
-        self.actionAbout.setToolTip('Brief description of the application')
+        self.actionAbout.setIconText(self.tr('About'))
+        self.actionAbout.setToolTip(self.tr('Brief description of the application'))
         self.actionAbout.triggered.connect(self.onActionAboutTriggered)
 
-        self.actionColophon = QAction('Colophon', self)
+        self.actionColophon = QAction(self.tr('Colophon'), self)
         self.actionColophon.setObjectName('actionColophon')
-        self.actionColophon.setIconText('Colophon')
-        self.actionColophon.setToolTip('Lengthy description of the application')
+        self.actionColophon.setIconText(self.tr('Colophon'))
+        self.actionColophon.setToolTip(self.tr('Lengthy description of the application'))
         self.actionColophon.triggered.connect(self.onActionColophonTriggered)
 
-        self.actionPreferences = QAction('Preferences…', self)
+        self.actionPreferences = QAction(self.tr('Preferences…'), self)
         self.actionPreferences.setObjectName('actionPreferences')
         self.actionPreferences.setIcon(QIcon.fromTheme('configure', QIcon(':/icons/actions/16/application-configure.svg')))
-        self.actionPreferences.setIconText('Preferences')
-        self.actionPreferences.setToolTip('Customize the appearance and behavior of the application')
+        self.actionPreferences.setIconText(self.tr('Preferences'))
+        self.actionPreferences.setToolTip(self.tr('Customize the appearance and behavior of the application'))
         self.actionPreferences.triggered.connect(self.onActionPreferencesTriggered)
 
-        self.actionQuit = QAction('Quit', self)
+        self.actionQuit = QAction(self.tr('Quit'), self)
         self.actionQuit.setObjectName('actionQuit')
         self.actionQuit.setIcon(QIcon.fromTheme('application-exit', QIcon(':/icons/actions/16/application-exit.svg')))
-        self.actionQuit.setIconText('Quit')
+        self.actionQuit.setIconText(self.tr('Quit'))
         self.actionQuit.setShortcut(QKeySequence.Quit)
-        self.actionQuit.setToolTip(f'Quit the application [{self.actionQuit.shortcut().toString(QKeySequence.NativeText)}]')
+        self.actionQuit.setToolTip(self.tr(f'Quit the application [{self.actionQuit.shortcut().toString(QKeySequence.NativeText)}]'))
         self.actionQuit.triggered.connect(self.close)
 
         # Actions: View
         self.actionFullScreen = QAction(self)
         self.actionFullScreen.setCheckable(True)
-        self.actionFullScreen.setIconText('Full Screen')
+        self.actionFullScreen.setIconText(self.tr('Full Screen'))
         self.actionFullScreen.setShortcuts([QKeySequence(Qt.Key_F11), QKeySequence.FullScreen])
         self.actionFullScreen.triggered.connect(self.onActionFullScreenTriggered)
 
-        self.actionToolbarApplication = QAction('Show Application Toolbar', self)
+        self.actionToolbarApplication = QAction(self.tr('Show Application Toolbar'), self)
         self.actionToolbarApplication.setObjectName('actionToolbarApplication')
         self.actionToolbarApplication.setCheckable(True)
         self.actionToolbarApplication.setChecked(True)
-        self.actionToolbarApplication.setToolTip('Display the Application toolbar')
+        self.actionToolbarApplication.setToolTip(self.tr('Display the Application toolbar'))
         self.actionToolbarApplication.toggled.connect(lambda checked: self.toolbarApplication.setVisible(checked))
 
-        self.actionToolbarView = QAction('Show View Toolbar', self)
+        self.actionToolbarView = QAction(self.tr('Show View Toolbar'), self)
         self.actionToolbarView.setObjectName('actionToolbarView')
         self.actionToolbarView.setCheckable(True)
         self.actionToolbarView.setChecked(True)
-        self.actionToolbarView.setToolTip('Display the View toolbar')
+        self.actionToolbarView.setToolTip(self.tr('Display the View toolbar'))
         self.actionToolbarView.toggled.connect(lambda checked: self.toolbarView.setVisible(checked))
 
 
     def updateActionFullScreen(self):
 
         if not self.isFullScreen():
-            self.actionFullScreen.setText('Full Screen Mode')
+            self.actionFullScreen.setText(self.tr('Full Screen Mode'))
             self.actionFullScreen.setIcon(QIcon.fromTheme('view-fullscreen', QIcon(':/icons/actions/16/view-fullscreen.svg')))
             self.actionFullScreen.setChecked(False)
-            self.actionFullScreen.setToolTip(f'Display the window in full screen [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]')
+            self.actionFullScreen.setToolTip(self.tr(f'Display the window in full screen [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]'))
         else:
-            self.actionFullScreen.setText('Exit Full Screen Mode')
+            self.actionFullScreen.setText(self.tr('Exit Full Screen Mode'))
             self.actionFullScreen.setIcon(QIcon.fromTheme('view-restore', QIcon(':/icons/actions/16/view-restore.svg')))
             self.actionFullScreen.setChecked(True)
-            self.actionFullScreen.setToolTip(f'Exit the full screen mode [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]')
+            self.actionFullScreen.setToolTip(self.tr(f'Exit the full screen mode [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]'))
 
 
     def createMenus(self):
 
         # Menu: Application
-        menuApplication = self.menuBar().addMenu('Application')
+        menuApplication = self.menuBar().addMenu(self.tr('Application'))
         menuApplication.setObjectName('menuApplication')
         menuApplication.addAction(self.actionAbout)
         menuApplication.addAction(self.actionColophon)
@@ -125,7 +125,7 @@ class MainWindow(QMainWindow):
         menuApplication.addAction(self.actionQuit)
 
         # Menu: View
-        menuView = self.menuBar().addMenu('View')
+        menuView = self.menuBar().addMenu(self.tr('View'))
         menuView.setObjectName('menuView')
         menuView.addAction(self.actionFullScreen)
         menuView.addSeparator()
@@ -136,7 +136,7 @@ class MainWindow(QMainWindow):
     def createToolbars(self):
 
         # Toolbar: Application
-        self.toolbarApplication = self.addToolBar('Application Toolbar')
+        self.toolbarApplication = self.addToolBar(self.tr('Application Toolbar'))
         self.toolbarApplication.setObjectName('toolbarApplication')
         self.toolbarApplication.addAction(self.actionAbout)
         self.toolbarApplication.addAction(self.actionPreferences)
@@ -145,7 +145,7 @@ class MainWindow(QMainWindow):
         self.toolbarApplication.visibilityChanged.connect(lambda visible: self.actionToolbarApplication.setChecked(visible))
 
         # Toolbar: View
-        self.toolbarView = self.addToolBar('View Toolbar')
+        self.toolbarView = self.addToolBar(self.tr('View Toolbar'))
         self.toolbarView.setObjectName('toolbarView')
         self.toolbarView.addAction(self.actionFullScreen)
         self.toolbarView.visibilityChanged.connect(lambda visible: self.actionToolbarView.setChecked(visible))

@@ -124,6 +124,10 @@ class MainWindow(QMainWindow):
         menuApplication.addSeparator()
         menuApplication.addAction(self.actionQuit)
 
+        # Menu: Channels
+        menuChannels = self.menuBar().addMenu(self.tr('Channels'))
+        menuChannels.setObjectName('menuChannels')
+
         # Menu: View
         menuView = self.menuBar().addMenu(self.tr('View'))
         menuView.setObjectName('menuView')
@@ -143,6 +147,10 @@ class MainWindow(QMainWindow):
         self.toolbarApplication.addSeparator()
         self.toolbarApplication.addAction(self.actionQuit)
         self.toolbarApplication.visibilityChanged.connect(lambda visible: self.actionToolbarApplication.setChecked(visible))
+
+        # Toolbar: Channels
+        self.toolbarChannels = self.addToolBar(self.tr('View Channels'))
+        self.toolbarChannels.setObjectName('toolbarChannels')
 
         # Toolbar: View
         self.toolbarView = self.addToolBar(self.tr('View Toolbar'))

@@ -108,7 +108,7 @@ class MainWindow(QMainWindow):
         self.actionLiveStreams.setIconText(self.tr('Live streams'))
         self.actionLiveStreams.setCheckable(True)
         self.actionLiveStreams.setToolTip(self.tr('Show all live streaming channels'))
-        self.actionLiveStreams.triggered.connect(lambda checked: self.onActionLiveStreamsToggled(checked))
+        self.actionLiveStreams.toggled.connect(lambda checked: self.onActionLiveStreamsToggled(checked))
 
         self.actionChannels = []
         for it in self.listChannels:
@@ -127,6 +127,13 @@ class MainWindow(QMainWindow):
 
             self.actionChannels.append(channel)
 
+        self.actionSelectInvert = QAction(self.tr('Invert Selection'), self)
+        self.actionSelectInvert.setObjectName('actionSelectInvert')
+        self.actionSelectInvert.setIcon(QIcon.fromTheme('edit-select-invert', QIcon(':/icons/actions/16/edit-select-invert.svg')))
+        self.actionSelectInvert.setIconText(self.tr('Invert'))
+        self.actionSelectInvert.setCheckable(True)
+        self.actionSelectInvert.setToolTip(self.tr('Invert list of selected channels'))
+        self.actionSelectInvert.toggled.connect(lambda checked: self.onActionSelectInvertToggled(checked))
 
         # Actions: View
         self.actionFullScreen = QAction(self)
@@ -189,6 +196,8 @@ class MainWindow(QMainWindow):
         menuChannels.addAction(self.actionLiveStreams)
         menuChannels.addSeparator()
         menuChannels.addActions(self.actionChannels)
+        menuChannels.addSeparator()
+        menuChannels.addAction(self.actionSelectInvert)
 
         # Menu: View
         menuView = self.menuBar().addMenu(self.tr('View'))
@@ -217,6 +226,8 @@ class MainWindow(QMainWindow):
         self.toolbarChannels.addAction(self.actionLiveStreams)
         self.toolbarChannels.addSeparator()
         self.toolbarChannels.addActions(self.actionChannels)
+        self.toolbarChannels.addSeparator()
+        self.toolbarChannels.addAction(self.actionSelectInvert)
         self.toolbarChannels.visibilityChanged.connect(lambda visible: self.actionToolbarChannels.setChecked(visible))
 
         # Toolbar: View
@@ -281,6 +292,10 @@ class MainWindow(QMainWindow):
 
 
     def onActionChannelsToggled(self, channel, checked):
+        pass
+
+
+    def onActionSelectInvertToggled(self, checked):
         pass
 
 

@@ -35,6 +35,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 
+        self.createChannels()
         self.createActions()
         self.createMenus()
         self.createToolbars()
@@ -43,6 +44,30 @@ class MainWindow(QMainWindow):
         self.setApplicationState()
 
         self.updateActionFullScreen()
+
+
+    def createChannels(self):
+
+        self.listChannels = {
+            '3sat': ['3sat'],
+            'ard': ['ARD', 'Das Erste'],
+            'arteDe': ['ARTE.de'],
+            'arteFr': ['ARTE.fr'],
+            'br': ['BR', 'Bayerischer Rundfunk'],
+            'dw': ['DW TV', 'Deutsche Welle'],
+            'hr': ['HR', 'Hessischer Rundfunk'],
+            'kika': ['KiKA', 'Kinderkanal von ARD und ZDF'],
+            'mdr': ['MDR', 'Mitteldeutscher Rundfunk'],
+            'ndr': ['NDR', 'Norddeutscher Rundfunk'],
+            'orf': ['ORF', 'Österreichischer Rundfunk'],
+            'phoenix': ['phoenix'],
+            'rbb': ['RBB', 'Rundfunk Berlin-Brandenburg'],
+            'sr': ['SR', 'Saarländischer Rundfunk'],
+            'srf': ['SRF', 'Schweizer Rundfunk'],
+            'swr': ['SWR', 'Südwestrundfunk'],
+            'wdr': ['WDR', 'Westdeutscher Rundfunk'],
+            'zdf': ['ZDF', 'Zweites Deutsches Fernsehen']
+        }
 
 
     def createActions(self):

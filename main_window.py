@@ -110,6 +110,24 @@ class MainWindow(QMainWindow):
         self.actionLiveStreams.setToolTip(self.tr('Show all live streaming channels'))
         self.actionLiveStreams.triggered.connect(lambda checked: self.onActionLiveStreamsToggled(checked))
 
+        self.actionChannels = []
+        for it in self.listChannels:
+
+            if len(self.listChannels[it]) > 1:
+                text = self.tr(f'{self.listChannels[it][0]} ({self.listChannels[it][1]})')
+            else:
+                text = f'{self.listChannels[it][0]}'
+
+            channel = QAction(text, self)
+            channel.setObjectName(f'actionChannel_{it}')
+            channel.setIconText(self.listChannels[it][0])
+            channel.setCheckable(True)
+            channel.setToolTip(self.tr(f'Show all programs of channel {text}'))
+            channel.toggled.connect(lambda checked: self.onActionChannelsToggled(it, checked))
+
+            self.actionChannels.append(channel)
+
+
         # Actions: View
         self.actionFullScreen = QAction(self)
         self.actionFullScreen.setCheckable(True)
@@ -169,6 +187,8 @@ class MainWindow(QMainWindow):
         menuChannels = self.menuBar().addMenu(self.tr('Channels'))
         menuChannels.setObjectName('menuChannels')
         menuChannels.addAction(self.actionLiveStreams)
+        menuChannels.addSeparator()
+        menuChannels.addActions(self.actionChannels)
 
         # Menu: View
         menuView = self.menuBar().addMenu(self.tr('View'))
@@ -195,6 +215,8 @@ class MainWindow(QMainWindow):
         self.toolbarChannels = self.addToolBar(self.tr('View Channels'))
         self.toolbarChannels.setObjectName('toolbarChannels')
         self.toolbarChannels.addAction(self.actionLiveStreams)
+        self.toolbarChannels.addSeparator()
+        self.toolbarChannels.addActions(self.actionChannels)
         self.toolbarChannels.visibilityChanged.connect(lambda visible: self.actionToolbarChannels.setChecked(visible))
 
         # Toolbar: View
@@ -255,6 +277,10 @@ class MainWindow(QMainWindow):
 
 
     def onActionLiveStreamsToggled(self, checked):
+        pass
+
+
+    def onActionChannelsToggled(self, channel, checked):
         pass
 
 

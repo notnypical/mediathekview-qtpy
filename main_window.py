@@ -76,6 +76,15 @@ class MainWindow(QMainWindow):
         self.actionQuit.setToolTip(self.tr(f'Quit the application [{self.actionQuit.shortcut().toString(QKeySequence.NativeText)}]'))
         self.actionQuit.triggered.connect(self.close)
 
+        # Action: Channels
+        self.actionLiveStreams = QAction(self.tr('Live streams'), self)
+        self.actionLiveStreams.setObjectName('actionLiveStreams')
+        self.actionLiveStreams.setIcon(QIcon.fromTheme('network-wireless-hotspot', QIcon(':/icons/actions/16/live-stream.svg')))
+        self.actionLiveStreams.setIconText(self.tr('Live streams'))
+        self.actionLiveStreams.setCheckable(True)
+        self.actionLiveStreams.setToolTip(self.tr('Show all live streaming channels'))
+        self.actionLiveStreams.triggered.connect(lambda checked: self.onActionLiveStreamsToggled(checked))
+
         # Actions: View
         self.actionFullScreen = QAction(self)
         self.actionFullScreen.setCheckable(True)
@@ -134,6 +143,7 @@ class MainWindow(QMainWindow):
         # Menu: Channels
         menuChannels = self.menuBar().addMenu(self.tr('Channels'))
         menuChannels.setObjectName('menuChannels')
+        menuChannels.addAction(self.actionLiveStreams)
 
         # Menu: View
         menuView = self.menuBar().addMenu(self.tr('View'))
@@ -159,6 +169,7 @@ class MainWindow(QMainWindow):
         # Toolbar: Channels
         self.toolbarChannels = self.addToolBar(self.tr('View Channels'))
         self.toolbarChannels.setObjectName('toolbarChannels')
+        self.toolbarChannels.addAction(self.actionLiveStreams)
         self.toolbarChannels.visibilityChanged.connect(lambda visible: self.actionToolbarChannels.setChecked(visible))
 
         # Toolbar: View
@@ -215,6 +226,10 @@ class MainWindow(QMainWindow):
 
 
     def onActionPreferencesTriggered(self):
+        pass
+
+
+    def onActionLiveStreamsToggled(self, checked):
         pass
 
 

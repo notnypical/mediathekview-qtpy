@@ -21,6 +21,8 @@
 from PySide2.QtSvg import QSvgWidget
 from PySide2.QtWidgets import QApplication, QHBoxLayout, QLabel, QVBoxLayout, QWidget
 
+import resources
+
 
 class DialogTitleBox(QWidget):
 

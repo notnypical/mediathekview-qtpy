@@ -53,7 +53,7 @@ class AboutDialog(QDialog):
         layout.addWidget(buttonBox)
 
 
-    def setDialogGeometry(self, geometry = QByteArray()):
+    def setDialogGeometry(self, geometry=QByteArray()):
 
         if geometry:
             self.restoreGeometry(geometry)

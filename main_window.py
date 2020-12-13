@@ -221,7 +221,7 @@ class MainWindow(QMainWindow):
         self.toolbarApplication.visibilityChanged.connect(lambda visible: self.actionToolbarApplication.setChecked(visible))
 
         # Toolbar: Channels
-        self.toolbarChannels = self.addToolBar(self.tr('View Channels'))
+        self.toolbarChannels = self.addToolBar(self.tr('Channels Toolbar'))
         self.toolbarChannels.setObjectName('toolbarChannels')
         self.toolbarChannels.addAction(self.actionLiveStreams)
         self.toolbarChannels.addSeparator()
@@ -237,7 +237,7 @@ class MainWindow(QMainWindow):
         self.toolbarView.visibilityChanged.connect(lambda visible: self.actionToolbarView.setChecked(visible))
 
 
-    def setApplicationGeometry(self, geometry = QByteArray()):
+    def setApplicationGeometry(self, geometry=QByteArray()):
 
         if geometry:
             self.restoreGeometry(geometry)
@@ -252,7 +252,7 @@ class MainWindow(QMainWindow):
         return self.saveGeometry()
 
 
-    def setApplicationState(self, state = QByteArray()):
+    def setApplicationState(self, state=QByteArray()):
 
         if state:
             self.restoreState(state)

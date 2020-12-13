@@ -25,7 +25,7 @@ from PySide2.QtWidgets import QApplication, QHBoxLayout, QLabel, QVBoxLayout, QW
 class DialogTitleBox(QWidget):
 
     def __init__(self, parent=None):
-        super(DialogTitleBox, self).__init__(parent)
+        super().__init__(parent)
 
         logo = QSvgWidget()
         logo.load(':/icons/apps/22/mediathekview.svg')

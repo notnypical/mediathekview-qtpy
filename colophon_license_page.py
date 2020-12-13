@@ -24,7 +24,7 @@ from PySide2.QtWidgets import QApplication, QFrame, QTextBrowser, QVBoxLayout, Q
 class ColophonLicensePage(QWidget):
 
     def __init__(self, showMargins=True, parent=None):
-        super(ColophonLicensePage, self).__init__(parent)
+        super().__init__(parent)
 
         textBox = QTextBrowser()
         textBox.setFrameStyle(QFrame.NoFrame)

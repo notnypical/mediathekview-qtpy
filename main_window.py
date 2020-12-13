@@ -30,8 +30,8 @@ import resources
 
 class MainWindow(QMainWindow):
 
-    def __init__(self):
-        QMainWindow.__init__(self)
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 

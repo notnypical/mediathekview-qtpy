@@ -24,7 +24,7 @@ from PySide2.QtWidgets import QFrame, QTextBrowser, QVBoxLayout, QWidget
 class ColophonCreditsPage(QWidget):
 
     def __init__(self, showMargins=True, parent=None):
-        super(ColophonCreditsPage, self).__init__(parent)
+        super().__init__(parent)
 
         textBox = QTextBrowser()
         textBox.setFrameStyle(QFrame.NoFrame)

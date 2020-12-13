@@ -32,7 +32,7 @@ from dialog_title_box import DialogTitleBox
 class ColophonDialog(QDialog):
 
     def __init__(self, parent=None):
-        super(ColophonDialog, self).__init__(parent)
+        super().__init__(parent)
 
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setWindowTitle(self.tr('Colophon'))

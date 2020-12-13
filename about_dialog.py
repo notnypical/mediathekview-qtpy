@@ -28,7 +28,7 @@ from dialog_title_box import DialogTitleBox
 class AboutDialog(QDialog):
 
     def __init__(self, parent=None):
-        super(AboutDialog, self).__init__(parent)
+        super().__init__(parent)
 
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setWindowTitle(self.tr(f'About {QApplication.applicationName()}'))

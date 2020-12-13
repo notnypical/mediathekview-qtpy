@@ -28,7 +28,7 @@ from PySide2.QtWidgets import QApplication, QFrame, QTextBrowser, QVBoxLayout, Q
 class ColophonEnvironmentPage(QWidget):
 
     def __init__(self, showMargins=True, parent=None):
-        super(ColophonEnvironmentPage, self).__init__(parent)
+        super().__init__(parent)
 
         pythonVersion = sys.version
         pysideVersion = PySide2.__version__

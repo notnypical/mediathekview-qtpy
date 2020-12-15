@@ -21,6 +21,8 @@
 from PySide2.QtCore import QByteArray
 from PySide2.QtWidgets import QDialog, QDialogButtonBox, QHBoxLayout, QListWidget, QStackedWidget, QVBoxLayout
 
+from preferences_general_settings import PreferencesGeneralSettings
+
 
 class PreferencesDialog(QDialog):
 
@@ -32,10 +34,15 @@ class PreferencesDialog(QDialog):
         self.setDialogGeometry()
 
         # Settings box
+        self.generalSettings = PreferencesGeneralSettings(self)
+        self.generalSettings.settingsChanged.connect(self.onSettingsChanged)
+
         stackedBox = QStackedWidget()
+        stackedBox.addWidget(self.generalSettings)
         stackedBox.setCurrentIndex(0)
 
         listBox = QListWidget()
+        listBox.addItem(self.generalSettings.title())
         listBox.setCurrentRow(stackedBox.currentIndex())
         listBox.currentRowChanged.connect(stackedBox.setCurrentIndex)
 

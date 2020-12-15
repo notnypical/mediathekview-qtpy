@@ -11,6 +11,7 @@
         "main.py",
         "main_window.py",
         "preferences_dialog.py",
+        "preferences_general_settings.py",
         "resources.qrc"
     ]
 }

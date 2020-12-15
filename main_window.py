@@ -24,6 +24,7 @@ from PySide2.QtWidgets import QAction, QApplication, QMainWindow
 
 from about_dialog import AboutDialog
 from colophon_dialog import ColophonDialog
+from preferences_dialog import PreferencesDialog
 
 import resources
 
@@ -284,7 +285,12 @@ class MainWindow(QMainWindow):
 
 
     def onActionPreferencesTriggered(self):
-        pass
+
+        geometry = QByteArray()
+
+        dialog = PreferencesDialog(self)
+        dialog.setDialogGeometry(geometry)
+        dialog.exec_()
 
 
     def onActionLiveStreamsToggled(self, checked):

@@ -23,7 +23,7 @@ from PySide2.QtWidgets import QFrame, QTextBrowser, QVBoxLayout, QWidget
 
 class ColophonCreditsPage(QWidget):
 
-    def __init__(self, showMargins=True, parent=None):
+    def __init__(self, parent=None):
         super().__init__(parent)
 
         textBox = QTextBrowser()

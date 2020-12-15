@@ -33,12 +33,18 @@ class PreferencesDialog(QDialog):
 
 
         # Button box
-        buttonBox = QDialogButtonBox(QDialogButtonBox.Close)
+        buttonBox = QDialogButtonBox(QDialogButtonBox.RestoreDefaults | QDialogButtonBox.Ok | QDialogButtonBox.Apply | QDialogButtonBox.Cancel)
+        self.buttonApply = buttonBox.button(QDialogButtonBox.Apply)
+        buttonBox.button(QDialogButtonBox.RestoreDefaults).clicked.connect(self.onButtonDefaultsClicked)
+        buttonBox.accepted.connect(self.onButtonOkClicked)
+        buttonBox.button(QDialogButtonBox.Apply).clicked.connect(self.onButtonApplyClicked)
         buttonBox.rejected.connect(self.close)
 
         # Main layout
         layout = QVBoxLayout(self)
         layout.addWidget(buttonBox)
+
+        self.updateSettings()
 
 
     def setDialogGeometry(self, geometry=QByteArray()):
@@ -52,3 +58,26 @@ class PreferencesDialog(QDialog):
     def dialogGeometry(self):
 
         return self.saveGeometry()
+
+
+    def onSettingsChanged(self):
+
+        self.buttonApply.setEnabled(True)
+
+
+    def onButtonDefaultsClicked(self):
+        pass
+
+
+    def onButtonOkClicked(self):
+
+        self.close()
+
+
+    def onButtonApplyClicked(self):
+        pass
+
+
+    def updateSettings(self):
+
+        self.buttonApply.setEnabled(False)

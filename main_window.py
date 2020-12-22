@@ -124,6 +124,7 @@ class MainWindow(QMainWindow):
             channel.setIconText(self.listChannels[it][0])
             channel.setCheckable(True)
             channel.setToolTip(self.tr(f'Show all programs of channel {text}'))
+            channel.setData(text)
             channel.toggled.connect(lambda checked: self.onActionChannelsToggled(it, checked))
 
             self.actionChannels.append(channel)
@@ -224,6 +225,7 @@ class MainWindow(QMainWindow):
         # Toolbar: Channels
         self.toolbarChannels = self.addToolBar(self.tr('Channels Toolbar'))
         self.toolbarChannels.setObjectName('toolbarChannels')
+        self.toolbarChannels.setStyleSheet('*[invertChannel=true] { text-decoration: line-through; }')
         self.toolbarChannels.addAction(self.actionLiveStreams)
         self.toolbarChannels.addSeparator()
         self.toolbarChannels.addActions(self.actionChannels)
@@ -302,7 +304,19 @@ class MainWindow(QMainWindow):
 
 
     def onActionSelectInvertToggled(self, checked):
-        pass
+
+        # Tool buttons
+        for i in range(len(self.actionChannels)):
+
+            widget = self.toolbarChannels.widgetForAction(self.actionChannels[i])
+            widget.setProperty('invertChannel', checked)
+            widget.style().unpolish(widget)
+            widget.style().polish(widget)
+
+            if checked:
+                self.actionChannels[i].setToolTip(self.tr(f'Hide all programs of channel {self.actionChannels[i].data()}'))
+            else:
+                self.actionChannels[i].setToolTip(self.tr(f'Show all programs of channel {self.actionChannels[i].data()}'))
 
 
     def onActionFullScreenTriggered(self):

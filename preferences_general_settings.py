@@ -30,12 +30,14 @@ class PreferencesGeneralSettings(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        label = QLabel(self.tr('<strong style="font-size:large;">General Options</strong>'))
+        # Title
+        title = QLabel(self.tr('<strong style="font-size:large;">General Settings</strong>'))
 
 
         # Main layout
         self.layout = QVBoxLayout(self)
-        self.layout.addWidget(label)
+        self.layout.addWidget(title)
+        self.layout.addStretch()
 
 
     def title(self):

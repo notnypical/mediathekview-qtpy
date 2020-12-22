@@ -24,8 +24,14 @@ from PySide2.QtWidgets import QDialog, QDialogButtonBox, QHBoxLayout, QListWidge
 from preferences_database_settings import PreferencesDatabaseSettings
 from preferences_general_settings import PreferencesGeneralSettings
 
+class Settings():
+    pass
+
 
 class PreferencesDialog(QDialog):
+
+    _settings = Settings()
+
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -36,9 +42,11 @@ class PreferencesDialog(QDialog):
 
         # Settings box
         self.generalSettings = PreferencesGeneralSettings(self)
+        self.generalSettings.setZeroMargins()
         self.generalSettings.settingsChanged.connect(self.onSettingsChanged)
 
         self.databaseSettings = PreferencesDatabaseSettings(self)
+        self.databaseSettings.setZeroMargins()
         self.databaseSettings.settingsChanged.connect(self.onSettingsChanged)
 
         stackedBox = QStackedWidget()
@@ -69,7 +77,8 @@ class PreferencesDialog(QDialog):
         layout.addLayout(settingsBox)
         layout.addWidget(buttonBox)
 
-        self.updateSettings()
+        self.updateSettings(self._settings)
+        self.buttonApply.setEnabled(False)
 
 
     def setDialogGeometry(self, geometry=QByteArray()):
@@ -85,24 +94,44 @@ class PreferencesDialog(QDialog):
         return self.saveGeometry()
 
 
+    def setSettings(self, settings):
+
+        self.updateSettings(settings)
+        self.saveSettings()
+        self.buttonApply.setEnabled(False)
+
+
+    def settings(self):
+
+        return self._settings
+
+
     def onSettingsChanged(self):
 
         self.buttonApply.setEnabled(True)
 
 
     def onButtonDefaultsClicked(self):
-        pass
+
+        settings = Settings()
+        self.updateSettings(settings)
 
 
     def onButtonOkClicked(self):
 
+        self.saveSettings()
         self.close()
 
 
     def onButtonApplyClicked(self):
+
+        self.saveSettings()
+        self.buttonApply.setEnabled(False)
+
+
+    def updateSettings(self, settings):
         pass
 
 
-    def updateSettings(self):
-
-        self.buttonApply.setEnabled(False)
+    def saveSettings(self):
+        pass

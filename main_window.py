@@ -41,8 +41,7 @@ class MainWindow(QMainWindow):
         self.createMenus()
         self.createToolbars()
 
-        self.setApplicationGeometry()
-        self.setApplicationState()
+        self.readSettings()
 
         self.updateActionFullScreen()
 
@@ -238,6 +237,13 @@ class MainWindow(QMainWindow):
         self.toolbarView.setObjectName('toolbarView')
         self.toolbarView.addAction(self.actionFullScreen)
         self.toolbarView.visibilityChanged.connect(lambda visible: self.actionToolbarView.setChecked(visible))
+
+
+    def readSettings(self):
+
+        # Set application properties
+        self.setApplicationGeometry()
+        self.setApplicationState()
 
 
     def setApplicationGeometry(self, geometry=QByteArray()):

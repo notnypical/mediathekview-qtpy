@@ -146,21 +146,18 @@ class MainWindow(QMainWindow):
         self.actionToolbarApplication = QAction(self.tr('Show Application Toolbar'), self)
         self.actionToolbarApplication.setObjectName('actionToolbarApplication')
         self.actionToolbarApplication.setCheckable(True)
-        self.actionToolbarApplication.setChecked(True)
         self.actionToolbarApplication.setToolTip(self.tr('Display the Application toolbar'))
         self.actionToolbarApplication.toggled.connect(lambda checked: self.toolbarApplication.setVisible(checked))
 
         self.actionToolbarChannels = QAction(self.tr('Show Channels Toolbar'), self)
         self.actionToolbarChannels.setObjectName('actionToolbarChannels')
         self.actionToolbarChannels.setCheckable(True)
-        self.actionToolbarChannels.setChecked(True)
         self.actionToolbarChannels.setToolTip(self.tr('Display the Channels toolbar'))
         self.actionToolbarChannels.toggled.connect(lambda checked: self.toolbarChannels.setVisible(checked))
 
         self.actionToolbarView = QAction(self.tr('Show View Toolbar'), self)
         self.actionToolbarView.setObjectName('actionToolbarView')
         self.actionToolbarView.setCheckable(True)
-        self.actionToolbarView.setChecked(True)
         self.actionToolbarView.setToolTip(self.tr('Display the View toolbar'))
         self.actionToolbarView.toggled.connect(lambda checked: self.toolbarView.setVisible(checked))
 
@@ -287,7 +284,9 @@ class MainWindow(QMainWindow):
         if state:
             self.restoreState(state)
         else:
-            self.actionToolbarView.setChecked(False)
+            self.toolbarApplication.setVisible(True)
+            self.toolbarChannels.setVisible(True)
+            self.toolbarView.setVisible(False)
 
 
     def applicationState(self):

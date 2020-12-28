@@ -244,10 +244,11 @@ class MainWindow(QMainWindow):
         settings = QSettings()
 
         # Application and dialog properties
+        applicationGeometry = settings.value('Application/geometry', QByteArray())
         applicationState = settings.value('Application/state', QByteArray())
 
         # Set application properties
-        self.setApplicationGeometry()
+        self.setApplicationGeometry(applicationGeometry)
         self.setApplicationState(applicationState)
 
 
@@ -256,6 +257,7 @@ class MainWindow(QMainWindow):
         settings = QSettings()
 
         # Application and dialog properties
+        settings.setValue('Application/geometry', self.applicationGeometry())
         settings.setValue('Application/state', self.applicationState())
 
 

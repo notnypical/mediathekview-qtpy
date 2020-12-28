@@ -246,6 +246,10 @@ class MainWindow(QMainWindow):
         self.setApplicationState()
 
 
+    def writeSettings(self):
+        pass
+
+
     def setApplicationGeometry(self, geometry=QByteArray()):
 
         if geometry:
@@ -272,6 +276,12 @@ class MainWindow(QMainWindow):
     def applicationState(self):
 
         self.saveState()
+
+
+    def closeEvent(self, event):
+
+        self.writeSettings()
+        event.accept()
 
 
     def onActionAboutTriggered(self):

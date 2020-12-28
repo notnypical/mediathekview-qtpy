@@ -247,6 +247,7 @@ class MainWindow(QMainWindow):
         applicationGeometry = settings.value('Application/geometry', QByteArray())
         applicationState = settings.value('Application/state', QByteArray())
         self.aboutDialogGeometry = settings.value('AboutDialog/geometry', QByteArray())
+        self.colophonDialogGeometry = settings.value('ColophonDialog/geometry', QByteArray())
 
         # Set application properties
         self.setApplicationGeometry(applicationGeometry)
@@ -261,6 +262,7 @@ class MainWindow(QMainWindow):
         settings.setValue('Application/geometry', self.applicationGeometry())
         settings.setValue('Application/state', self.applicationState())
         settings.setValue('AboutDialog/geometry', self.aboutDialogGeometry)
+        settings.setValue('ColophonDialog/geometry', self.colophonDialogGeometry)
 
 
     def setApplicationGeometry(self, geometry=QByteArray()):
@@ -310,11 +312,13 @@ class MainWindow(QMainWindow):
 
     def onActionColophonTriggered(self):
 
-        geometry = QByteArray()
+        geometry = self.colophonDialogGeometry
 
         dialog = ColophonDialog(self)
         dialog.setDialogGeometry(geometry)
         dialog.exec_()
+
+        self.colophonDialogGeometry = dialog.dialogGeometry()
 
 
     def onActionPreferencesTriggered(self):

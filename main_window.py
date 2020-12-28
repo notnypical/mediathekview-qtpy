@@ -18,7 +18,7 @@
 # along with MediathekView-QtPy.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-from PySide2.QtCore import QByteArray, QRect, Qt
+from PySide2.QtCore import QByteArray, QRect, QSettings, Qt
 from PySide2.QtGui import QIcon, QKeySequence
 from PySide2.QtWidgets import QAction, QApplication, QMainWindow
 
@@ -241,13 +241,22 @@ class MainWindow(QMainWindow):
 
     def readSettings(self):
 
+        settings = QSettings()
+
+        # Application and dialog properties
+        applicationState = settings.value('Application/state', QByteArray())
+
         # Set application properties
         self.setApplicationGeometry()
-        self.setApplicationState()
+        self.setApplicationState(applicationState)
 
 
     def writeSettings(self):
-        pass
+
+        settings = QSettings()
+
+        # Application and dialog properties
+        settings.setValue('Application/state', self.applicationState())
 
 
     def setApplicationGeometry(self, geometry=QByteArray()):
@@ -275,7 +284,7 @@ class MainWindow(QMainWindow):
 
     def applicationState(self):
 
-        self.saveState()
+        return self.saveState()
 
 
     def closeEvent(self, event):

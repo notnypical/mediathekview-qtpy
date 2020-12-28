@@ -248,6 +248,7 @@ class MainWindow(QMainWindow):
         applicationState = settings.value('Application/state', QByteArray())
         self.aboutDialogGeometry = settings.value('AboutDialog/geometry', QByteArray())
         self.colophonDialogGeometry = settings.value('ColophonDialog/geometry', QByteArray())
+        self.preferencesDialogGeometry = settings.value('PreferencesDialog/geometry', QByteArray())
 
         # Set application properties
         self.setApplicationGeometry(applicationGeometry)
@@ -263,6 +264,7 @@ class MainWindow(QMainWindow):
         settings.setValue('Application/state', self.applicationState())
         settings.setValue('AboutDialog/geometry', self.aboutDialogGeometry)
         settings.setValue('ColophonDialog/geometry', self.colophonDialogGeometry)
+        settings.setValue('PreferencesDialog/geometry', self.preferencesDialogGeometry)
 
 
     def setApplicationGeometry(self, geometry=QByteArray()):
@@ -323,11 +325,13 @@ class MainWindow(QMainWindow):
 
     def onActionPreferencesTriggered(self):
 
-        geometry = QByteArray()
+        geometry = self.preferencesDialogGeometry
 
         dialog = PreferencesDialog(self)
         dialog.setDialogGeometry(geometry)
         dialog.exec_()
+
+        self.preferencesDialogGeometry = dialog.dialogGeometry()
 
 
     def onActionLiveStreamsToggled(self, checked):

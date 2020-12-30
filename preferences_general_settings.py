@@ -19,7 +19,7 @@
 #
 
 from PySide2.QtCore import Signal
-from PySide2.QtWidgets import QLabel, QVBoxLayout, QWidget
+from PySide2.QtWidgets import QCheckBox, QGroupBox, QLabel, QVBoxLayout, QWidget
 
 
 class PreferencesGeneralSettings(QWidget):
@@ -33,10 +33,20 @@ class PreferencesGeneralSettings(QWidget):
         # Title
         title = QLabel(self.tr('<strong style="font-size:large;">General Settings</strong>'))
 
+        # State and geometries
+        self.chkRestoreApplicationState = QCheckBox(self.tr('Save and restore the application state'))
+        self.chkRestoreApplicationState.stateChanged.connect(self.onSettingsChanged)
+
+        stateGeometryLayout = QVBoxLayout()
+        stateGeometryLayout.addWidget(self.chkRestoreApplicationState)
+
+        stateGeometryGroup = QGroupBox(self.tr('State && Geometries'))
+        stateGeometryGroup.setLayout(stateGeometryLayout)
 
         # Main layout
         self.layout = QVBoxLayout(self)
         self.layout.addWidget(title)
+        self.layout.addWidget(stateGeometryGroup)
         self.layout.addStretch()
 
 
@@ -53,3 +63,13 @@ class PreferencesGeneralSettings(QWidget):
     def onSettingsChanged(self):
 
         self.settingsChanged.emit()
+
+
+    def setRestoreApplicationState(self, checked):
+
+        self.chkRestoreApplicationState.setChecked(checked)
+
+
+    def restoreApplicationState(self):
+
+        return self.chkRestoreApplicationState.isChecked()

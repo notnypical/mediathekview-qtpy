@@ -254,8 +254,9 @@ class MainWindow(QMainWindow):
         self.preferencesDialogGeometry = settings.value('PreferencesDialog/geometry', QByteArray())
 
         # Set application properties
+        state = applicationState if self._settings.restoreApplicationState() else QByteArray()
         self.setApplicationGeometry(applicationGeometry)
-        self.setApplicationState(applicationState)
+        self.setApplicationState(state)
 
 
     def writeSettings(self):
@@ -265,8 +266,9 @@ class MainWindow(QMainWindow):
         self._settings.save(settings)
 
         # Application and dialog properties
+        state = self.applicationState() if self._settings.restoreApplicationState() else QByteArray()
         settings.setValue('Application/geometry', self.applicationGeometry())
-        settings.setValue('Application/state', self.applicationState())
+        settings.setValue('Application/state', state)
         settings.setValue('AboutDialog/geometry', self.aboutDialogGeometry)
         settings.setValue('ColophonDialog/geometry', self.colophonDialogGeometry)
         settings.setValue('PreferencesDialog/geometry', self.preferencesDialogGeometry)
@@ -336,8 +338,10 @@ class MainWindow(QMainWindow):
 
         dialog = PreferencesDialog(self)
         dialog.setDialogGeometry(geometry)
+        dialog.setSettings(self._settings)
         dialog.exec_()
 
+        self._settings = dialog.settings()
         self.preferencesDialogGeometry = dialog.dialogGeometry()
 
 

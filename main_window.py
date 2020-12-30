@@ -25,11 +25,15 @@ from PySide2.QtWidgets import QAction, QApplication, QMainWindow
 from about_dialog import AboutDialog
 from colophon_dialog import ColophonDialog
 from preferences_dialog import PreferencesDialog
+from settings import Settings
 
 import resources
 
 
 class MainWindow(QMainWindow):
+
+    _settings = Settings()
+
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -240,6 +244,8 @@ class MainWindow(QMainWindow):
 
         settings = QSettings()
 
+        self._settings.load(settings)
+
         # Application and dialog properties
         applicationGeometry = settings.value('Application/geometry', QByteArray())
         applicationState = settings.value('Application/state', QByteArray())
@@ -255,6 +261,8 @@ class MainWindow(QMainWindow):
     def writeSettings(self):
 
         settings = QSettings()
+
+        self._settings.save(settings)
 
         # Application and dialog properties
         settings.setValue('Application/geometry', self.applicationGeometry())

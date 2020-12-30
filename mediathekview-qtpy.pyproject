@@ -13,6 +13,7 @@
         "preferences_database_settings.py",
         "preferences_dialog.py",
         "preferences_general_settings.py",
-        "resources.qrc"
+        "resources.qrc",
+        "settings.py"
     ]
 }

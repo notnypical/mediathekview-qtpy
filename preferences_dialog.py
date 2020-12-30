@@ -23,9 +23,7 @@ from PySide2.QtWidgets import QDialog, QDialogButtonBox, QHBoxLayout, QListWidge
 
 from preferences_database_settings import PreferencesDatabaseSettings
 from preferences_general_settings import PreferencesGeneralSettings
-
-class Settings():
-    pass
+from settings import Settings
 
 
 class PreferencesDialog(QDialog):
@@ -77,7 +75,7 @@ class PreferencesDialog(QDialog):
         layout.addLayout(settingsBox)
         layout.addWidget(buttonBox)
 
-        self.updateSettings(self._settings)
+        self.updateSettings()
         self.buttonApply.setEnabled(False)
 
 
@@ -96,8 +94,9 @@ class PreferencesDialog(QDialog):
 
     def setSettings(self, settings):
 
-        self.updateSettings(settings)
-        self.saveSettings()
+        self._settings = settings
+
+        self.updateSettings()
         self.buttonApply.setEnabled(False)
 
 
@@ -113,8 +112,7 @@ class PreferencesDialog(QDialog):
 
     def onButtonDefaultsClicked(self):
 
-        settings = Settings()
-        self.updateSettings(settings)
+        self.updateSettings(True)
 
 
     def onButtonOkClicked(self):
@@ -129,7 +127,7 @@ class PreferencesDialog(QDialog):
         self.buttonApply.setEnabled(False)
 
 
-    def updateSettings(self, settings):
+    def updateSettings(self, isDefault=False):
         pass
 
 

@@ -37,8 +37,12 @@ class PreferencesGeneralSettings(QWidget):
         self.chkRestoreApplicationState = QCheckBox(self.tr('Save and restore the application state'))
         self.chkRestoreApplicationState.stateChanged.connect(self.onSettingsChanged)
 
+        self.chkRestoreApplicationGeometry = QCheckBox(self.tr('Save and restore the application geometry'))
+        self.chkRestoreApplicationGeometry.stateChanged.connect(self.onSettingsChanged)
+
         stateGeometryLayout = QVBoxLayout()
         stateGeometryLayout.addWidget(self.chkRestoreApplicationState)
+        stateGeometryLayout.addWidget(self.chkRestoreApplicationGeometry)
 
         stateGeometryGroup = QGroupBox(self.tr('State && Geometries'))
         stateGeometryGroup.setLayout(stateGeometryLayout)
@@ -73,3 +77,13 @@ class PreferencesGeneralSettings(QWidget):
     def restoreApplicationState(self):
 
         return self.chkRestoreApplicationState.isChecked()
+
+
+    def setRestoreApplicationGeometry(self, checked):
+
+        self.chkRestoreApplicationGeometry.setChecked(checked)
+
+
+    def restoreApplicationGeometry(self):
+
+        return self.chkRestoreApplicationGeometry.isChecked()

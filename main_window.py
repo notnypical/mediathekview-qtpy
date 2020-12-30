@@ -201,6 +201,10 @@ class MainWindow(QMainWindow):
         menuChannels.addSeparator()
         menuChannels.addAction(self.actionSelectInvert)
 
+        # Menu: Tools
+        menuTools = self.menuBar().addMenu(self.tr('Tools'))
+        menuTools.setObjectName('menuTools')
+
         # Menu: View
         menuView = self.menuBar().addMenu(self.tr('View'))
         menuView.setObjectName('menuView')

@@ -142,6 +142,7 @@ class MainWindow(QMainWindow):
 
         # Actions: View
         self.actionFullScreen = QAction(self)
+        self.actionFullScreen.setObjectName('actionFullScreen')
         self.actionFullScreen.setCheckable(True)
         self.actionFullScreen.setIconText(self.tr('Full Screen'))
         self.actionFullScreen.setShortcuts([QKeySequence(Qt.Key_F11), QKeySequence.FullScreen])
@@ -158,6 +159,12 @@ class MainWindow(QMainWindow):
         self.actionToolbarChannels.setCheckable(True)
         self.actionToolbarChannels.setToolTip(self.tr('Display the Channels toolbar'))
         self.actionToolbarChannels.toggled.connect(lambda checked: self.toolbarChannels.setVisible(checked))
+
+        self.actionToolbarTools = QAction(self.tr('Show Tools Toolbar'), self)
+        self.actionToolbarTools.setObjectName('actionToolbarTools')
+        self.actionToolbarTools.setCheckable(True)
+        self.actionToolbarTools.setToolTip(self.tr('Display the Tools toolbar'))
+        self.actionToolbarTools.toggled.connect(lambda checked: self.toolbarTools.setVisible(checked))
 
         self.actionToolbarView = QAction(self.tr('Show View Toolbar'), self)
         self.actionToolbarView.setObjectName('actionToolbarView')
@@ -212,6 +219,7 @@ class MainWindow(QMainWindow):
         menuView.addSeparator()
         menuView.addAction(self.actionToolbarApplication)
         menuView.addAction(self.actionToolbarChannels)
+        menuView.addAction(self.actionToolbarTools)
         menuView.addAction(self.actionToolbarView)
 
 
@@ -236,6 +244,11 @@ class MainWindow(QMainWindow):
         self.toolbarChannels.addSeparator()
         self.toolbarChannels.addAction(self.actionSelectInvert)
         self.toolbarChannels.visibilityChanged.connect(lambda visible: self.actionToolbarChannels.setChecked(visible))
+
+        # Toolbar: Tools
+        self.toolbarTools = self.addToolBar(self.tr('Tools Toolbar'))
+        self.toolbarTools.setObjectName('toolbarTools')
+        self.toolbarTools.visibilityChanged.connect(lambda visible: self.actionToolbarTools.setChecked(visible))
 
         # Toolbar: View
         self.toolbarView = self.addToolBar(self.tr('View Toolbar'))
@@ -302,6 +315,7 @@ class MainWindow(QMainWindow):
         else:
             self.toolbarApplication.setVisible(True)
             self.toolbarChannels.setVisible(True)
+            self.toolbarTools.setVisible(False)
             self.toolbarView.setVisible(False)
 
 

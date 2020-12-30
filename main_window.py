@@ -140,6 +140,15 @@ class MainWindow(QMainWindow):
         self.actionSelectInvert.setToolTip(self.tr('Invert list of selected channels'))
         self.actionSelectInvert.toggled.connect(lambda checked: self.onActionSelectInvertToggled(checked))
 
+        # Actions: Tools
+        self.actionUpdate = QAction(self.tr('Update Database'), self)
+        self.actionUpdate.setObjectName('actionUpdate')
+        self.actionUpdate.setIcon(QIcon.fromTheme('edit-download', QIcon(':/icons/actions/16/edit-download.svg')))
+        self.actionUpdate.setIconText(self.tr('Update'))
+        self.actionUpdate.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_F5))
+        self.actionUpdate.setToolTip(self.tr(f'Update the local database [{self.actionUpdate.shortcut().toString(QKeySequence.NativeText)}]'))
+        self.actionUpdate.triggered.connect(self.onActionUpdateTriggered)
+
         # Actions: View
         self.actionFullScreen = QAction(self)
         self.actionFullScreen.setObjectName('actionFullScreen')
@@ -210,6 +219,7 @@ class MainWindow(QMainWindow):
 
         # Menu: Tools
         menuTools = self.menuBar().addMenu(self.tr('Tools'))
+        menuTools.addAction(self.actionUpdate)
         menuTools.setObjectName('menuTools')
 
         # Menu: View
@@ -248,6 +258,7 @@ class MainWindow(QMainWindow):
         # Toolbar: Tools
         self.toolbarTools = self.addToolBar(self.tr('Tools Toolbar'))
         self.toolbarTools.setObjectName('toolbarTools')
+        self.toolbarTools.addAction(self.actionUpdate)
         self.toolbarTools.visibilityChanged.connect(lambda visible: self.actionToolbarTools.setChecked(visible))
 
         # Toolbar: View
@@ -387,6 +398,10 @@ class MainWindow(QMainWindow):
                 self.actionChannels[i].setToolTip(self.tr(f'Hide all programs of channel {self.actionChannels[i].data()}'))
             else:
                 self.actionChannels[i].setToolTip(self.tr(f'Show all programs of channel {self.actionChannels[i].data()}'))
+
+
+    def onActionUpdateTriggered(self):
+        pass
 
 
     def onActionFullScreenTriggered(self):

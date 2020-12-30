@@ -40,9 +40,13 @@ class PreferencesGeneralSettings(QWidget):
         self.chkRestoreApplicationGeometry = QCheckBox(self.tr('Save and restore the application geometry'))
         self.chkRestoreApplicationGeometry.stateChanged.connect(self.onSettingsChanged)
 
+        self.chkRestoreDialogGeometry = QCheckBox(self.tr('Save and restore dialog geometries'))
+        self.chkRestoreDialogGeometry.stateChanged.connect(self.onSettingsChanged)
+
         stateGeometryLayout = QVBoxLayout()
         stateGeometryLayout.addWidget(self.chkRestoreApplicationState)
         stateGeometryLayout.addWidget(self.chkRestoreApplicationGeometry)
+        stateGeometryLayout.addWidget(self.chkRestoreDialogGeometry)
 
         stateGeometryGroup = QGroupBox(self.tr('State && Geometries'))
         stateGeometryGroup.setLayout(stateGeometryLayout)
@@ -87,3 +91,13 @@ class PreferencesGeneralSettings(QWidget):
     def restoreApplicationGeometry(self):
 
         return self.chkRestoreApplicationGeometry.isChecked()
+
+
+    def setRestoreDialogGeometry(self, checked):
+
+        self.chkRestoreDialogGeometry.setChecked(checked)
+
+
+    def restoreDialogGeometry(self):
+
+        return self.chkRestoreDialogGeometry.isChecked()

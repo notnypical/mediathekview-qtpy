@@ -25,6 +25,7 @@ class Settings():
 
         self._restoreApplicationState = True
         self._restoreApplicationGeometry = True
+        self._restoreDialogGeometry = True
 
 
     def load(self, settings):
@@ -33,6 +34,7 @@ class Settings():
 
         self.setRestoreApplicationState(self.valueToBool(settings.value('restoreApplicationState', True)))
         self.setRestoreApplicationGeometry(self.valueToBool(settings.value('restoreApplicationGeometry', True)))
+        self.setRestoreDialogGeometry(self.valueToBool(settings.value('restoreDialogGeometry', True)))
 
         settings.endGroup()
 
@@ -51,6 +53,7 @@ class Settings():
 
         settings.setValue('restoreApplicationState', self._restoreApplicationState)
         settings.setValue('restoreApplicationGeometry', self._restoreApplicationGeometry)
+        settings.setValue('restoreDialogGeometry', self._restoreDialogGeometry)
 
         settings.endGroup()
 
@@ -73,3 +76,13 @@ class Settings():
     def restoreApplicationGeometry(self, isDefault=False):
 
         return self._restoreApplicationGeometry if not isDefault else True
+
+
+    def setRestoreDialogGeometry(self, value):
+
+        self._restoreDialogGeometry = value
+
+
+    def restoreDialogGeometry(self, isDefault=False):
+
+        return self._restoreDialogGeometry if not isDefault else True

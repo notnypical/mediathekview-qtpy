@@ -314,29 +314,29 @@ class MainWindow(QMainWindow):
 
     def onActionAboutTriggered(self):
 
-        geometry = self.aboutDialogGeometry
+        geometry = self.aboutDialogGeometry if self._settings.restoreDialogGeometry() else QByteArray()
 
         dialog = AboutDialog(self)
         dialog.setDialogGeometry(geometry)
         dialog.exec_()
 
-        self.aboutDialogGeometry = dialog.dialogGeometry()
+        self.aboutDialogGeometry = dialog.dialogGeometry() if self._settings.restoreDialogGeometry() else QByteArray()
 
 
     def onActionColophonTriggered(self):
 
-        geometry = self.colophonDialogGeometry
+        geometry = self.colophonDialogGeometry if self._settings.restoreDialogGeometry() else QByteArray()
 
         dialog = ColophonDialog(self)
         dialog.setDialogGeometry(geometry)
         dialog.exec_()
 
-        self.colophonDialogGeometry = dialog.dialogGeometry()
+        self.colophonDialogGeometry = dialog.dialogGeometry() if self._settings.restoreDialogGeometry() else QByteArray()
 
 
     def onActionPreferencesTriggered(self):
 
-        geometry = self.preferencesDialogGeometry
+        geometry = self.preferencesDialogGeometry if self._settings.restoreDialogGeometry() else QByteArray()
 
         dialog = PreferencesDialog(self)
         dialog.setDialogGeometry(geometry)
@@ -344,7 +344,7 @@ class MainWindow(QMainWindow):
         dialog.exec_()
 
         self._settings = dialog.settings()
-        self.preferencesDialogGeometry = dialog.dialogGeometry()
+        self.preferencesDialogGeometry = dialog.dialogGeometry() if self._settings.restoreDialogGeometry() else QByteArray()
 
 
     def onActionLiveStreamsToggled(self, checked):

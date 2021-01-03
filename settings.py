@@ -23,6 +23,7 @@ class Settings():
 
     def __init__(self):
 
+        # General: State & Geometries
         self._restoreApplicationState = True
         self._restoreApplicationGeometry = True
         self._restoreDialogGeometry = True
@@ -32,6 +33,7 @@ class Settings():
 
         settings.beginGroup('Settings')
 
+        # General: State & Geometries
         self.setRestoreApplicationState(self.valueToBool(settings.value('restoreApplicationState', True)))
         self.setRestoreApplicationGeometry(self.valueToBool(settings.value('restoreApplicationGeometry', True)))
         self.setRestoreDialogGeometry(self.valueToBool(settings.value('restoreDialogGeometry', True)))
@@ -51,6 +53,7 @@ class Settings():
 
         settings.beginGroup('Settings')
 
+        # General: State & Geometries
         settings.setValue('restoreApplicationState', self._restoreApplicationState)
         settings.setValue('restoreApplicationGeometry', self._restoreApplicationGeometry)
         settings.setValue('restoreDialogGeometry', self._restoreDialogGeometry)

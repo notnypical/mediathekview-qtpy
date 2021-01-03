@@ -10,9 +10,9 @@
         "dialog_title_box.py",
         "main.py",
         "main_window.py",
-        "preferences_database_settings.py",
+        "preferences_database_page.py",
         "preferences_dialog.py",
-        "preferences_general_settings.py",
+        "preferences_general_page.py",
         "resources.qrc",
         "settings.py"
     ]

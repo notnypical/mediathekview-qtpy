@@ -21,8 +21,8 @@
 from PySide2.QtCore import QByteArray
 from PySide2.QtWidgets import QDialog, QDialogButtonBox, QHBoxLayout, QListWidget, QStackedWidget, QVBoxLayout
 
-from preferences_database_settings import PreferencesDatabaseSettings
-from preferences_general_settings import PreferencesGeneralSettings
+from preferences_database_page import PreferencesDatabasePage
+from preferences_general_page import PreferencesGeneralPage
 from settings import Settings
 
 
@@ -39,22 +39,22 @@ class PreferencesDialog(QDialog):
         self.setDialogGeometry()
 
         # Settings box
-        self.generalSettings = PreferencesGeneralSettings(self)
-        self.generalSettings.setZeroMargins()
-        self.generalSettings.settingsChanged.connect(self.onSettingsChanged)
+        self.generalPage = PreferencesGeneralPage(self)
+        self.generalPage.setZeroMargins()
+        self.generalPage.settingsChanged.connect(self.onSettingsChanged)
 
-        self.databaseSettings = PreferencesDatabaseSettings(self)
-        self.databaseSettings.setZeroMargins()
-        self.databaseSettings.settingsChanged.connect(self.onSettingsChanged)
+        self.databasePage = PreferencesDatabasePage(self)
+        self.databasePage.setZeroMargins()
+        self.databasePage.settingsChanged.connect(self.onSettingsChanged)
 
         stackedBox = QStackedWidget()
-        stackedBox.addWidget(self.generalSettings)
-        stackedBox.addWidget(self.databaseSettings)
+        stackedBox.addWidget(self.generalPage)
+        stackedBox.addWidget(self.databasePage)
         stackedBox.setCurrentIndex(0)
 
         listBox = QListWidget()
-        listBox.addItem(self.generalSettings.title())
-        listBox.addItem(self.databaseSettings.title())
+        listBox.addItem(self.generalPage.title())
+        listBox.addItem(self.databasePage.title())
         listBox.setCurrentRow(stackedBox.currentIndex())
         listBox.currentRowChanged.connect(stackedBox.setCurrentIndex)
 
@@ -130,14 +130,14 @@ class PreferencesDialog(QDialog):
     def updateSettings(self, isDefault=False):
 
         # General
-        self.generalSettings.setRestoreApplicationState(self._settings.restoreApplicationState(isDefault))
-        self.generalSettings.setRestoreApplicationGeometry(self._settings.restoreApplicationGeometry(isDefault))
-        self.generalSettings.setRestoreDialogGeometry(self._settings.restoreDialogGeometry(isDefault))
+        self.generalPage.setRestoreApplicationState(self._settings.restoreApplicationState(isDefault))
+        self.generalPage.setRestoreApplicationGeometry(self._settings.restoreApplicationGeometry(isDefault))
+        self.generalPage.setRestoreDialogGeometry(self._settings.restoreDialogGeometry(isDefault))
 
 
     def saveSettings(self):
 
         # General
-        self._settings.setRestoreApplicationState(self.generalSettings.restoreApplicationState())
-        self._settings.setRestoreApplicationGeometry(self.generalSettings.restoreApplicationGeometry())
-        self._settings.setRestoreDialogGeometry(self.generalSettings.restoreDialogGeometry())
+        self._settings.setRestoreApplicationState(self.generalPage.restoreApplicationState())
+        self._settings.setRestoreApplicationGeometry(self.generalPage.restoreApplicationGeometry())
+        self._settings.setRestoreDialogGeometry(self.generalPage.restoreDialogGeometry())

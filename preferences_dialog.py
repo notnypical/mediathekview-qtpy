@@ -36,8 +36,6 @@ class PreferencesDialog(QDialog):
 
         self.setWindowTitle(self.tr('Preferences'))
 
-        self.setDialogGeometry()
-
         # Preferences box
         self.generalPage = PreferencesGeneralPage(self)
         self.generalPage.setZeroMargins()
@@ -81,7 +79,7 @@ class PreferencesDialog(QDialog):
 
     def setDialogGeometry(self, geometry=QByteArray()):
 
-        if geometry:
+        if not geometry.isEmpty():
             self.restoreGeometry(geometry)
         else:
             self.resize(800, 600)
@@ -129,7 +127,7 @@ class PreferencesDialog(QDialog):
 
     def updatePreferences(self, isDefault=False):
 
-        # General: State && Geometries
+        # General: State & Geometries
         self.generalPage.setRestoreApplicationState(self._preferences.restoreApplicationState(isDefault))
         self.generalPage.setRestoreApplicationGeometry(self._preferences.restoreApplicationGeometry(isDefault))
         self.generalPage.setRestoreDialogGeometry(self._preferences.restoreDialogGeometry(isDefault))
@@ -137,7 +135,7 @@ class PreferencesDialog(QDialog):
 
     def savePreferences(self):
 
-        # General: State && Geometries
+        # General: State & Geometries
         self._preferences.setRestoreApplicationState(self.generalPage.restoreApplicationState())
         self._preferences.setRestoreApplicationGeometry(self.generalPage.restoreApplicationGeometry())
         self._preferences.setRestoreDialogGeometry(self.generalPage.restoreDialogGeometry())

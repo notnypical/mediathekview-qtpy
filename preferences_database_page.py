@@ -24,7 +24,7 @@ from PySide2.QtWidgets import QLabel, QVBoxLayout, QWidget
 
 class PreferencesDatabasePage(QWidget):
 
-    settingsChanged = Signal()
+    preferencesChanged = Signal()
 
 
     def __init__(self, parent=None):
@@ -50,6 +50,6 @@ class PreferencesDatabasePage(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
 
 
-    def onSettingsChanged(self):
+    def onPreferencesChanged(self):
 
-        self.settingsChanged.emit()
+        self.preferencesChanged.emit()

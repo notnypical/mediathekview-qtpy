@@ -18,7 +18,7 @@
 # along with MediathekView-QtPy.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-from PySide2.QtCore import QByteArray, QRect, QSettings, Qt
+from PySide2.QtCore import QByteArray, QSettings, Qt
 from PySide2.QtGui import QIcon, QKeySequence
 from PySide2.QtWidgets import QAction, QApplication, QMainWindow
 
@@ -40,14 +40,91 @@ class MainWindow(QMainWindow):
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 
+        self.readSettings()
+
         self.createChannels()
+
         self.createActions()
         self.createMenus()
         self.createToolbars()
 
-        self.readSettings()
+        self.setApplicationState(self._applicationState)
+        self.setApplicationGeometry(self._applicationGeometry)
 
         self.updateActionFullScreen()
+
+
+    def setApplicationState(self, state=QByteArray()):
+
+        if not state.isEmpty():
+            self.restoreState(state)
+        else:
+            self.toolbarApplication.setVisible(True)
+            self.toolbarChannels.setVisible(True)
+            self.toolbarTools.setVisible(False)
+            self.toolbarView.setVisible(False)
+
+
+    def applicationState(self):
+
+        return self.saveState()
+
+
+    def setApplicationGeometry(self, geometry=QByteArray()):
+
+        if not geometry.isEmpty():
+            self.restoreGeometry(geometry)
+        else:
+            availableGeometry = self.screen().availableGeometry()
+            self.resize(availableGeometry.width() * 2/3, availableGeometry.height() * 2/3)
+            self.move((availableGeometry.width() - self.width()) / 2, (availableGeometry.height() - self.height()) / 2)
+
+
+    def applicationGeometry(self):
+
+        return self.saveGeometry()
+
+
+    def closeEvent(self, event):
+
+        if True:
+            self._applicationState = self.applicationState() if self._preferences.restoreApplicationState() else QByteArray()
+            self._applicationGeometry = self.applicationGeometry() if self._preferences.restoreApplicationGeometry() else QByteArray()
+
+            self.writeSettings()
+            event.accept()
+        else:
+            event.ignore()
+
+
+    def readSettings(self):
+
+        settings = QSettings()
+
+        # Preferences
+        self._preferences.load(settings)
+
+        # Application properties
+        self._applicationState = settings.value('Application/State', QByteArray()) if self._preferences.restoreApplicationState() else QByteArray()
+        self._applicationGeometry = settings.value('Application/Geometry', QByteArray()) if self._preferences.restoreApplicationGeometry() else QByteArray()
+        self.aboutDialogGeometry = settings.value('AboutDialog/Geometry', QByteArray())
+        self.colophonDialogGeometry = settings.value('ColophonDialog/Geometry', QByteArray())
+        self.preferencesDialogGeometry = settings.value('PreferencesDialog/Geometry', QByteArray())
+
+
+    def writeSettings(self):
+
+        settings = QSettings()
+
+        # Preferences
+        self._preferences.save(settings)
+
+        # Application properties
+        settings.setValue('Application/State', self._applicationState)
+        settings.setValue('Application/Geometry', self._applicationGeometry)
+        settings.setValue('AboutDialog/Geometry', self.aboutDialogGeometry)
+        settings.setValue('ColophonDialog/Geometry', self.colophonDialogGeometry)
+        settings.setValue('PreferencesDialog/Geometry', self.preferencesDialogGeometry)
 
 
     def createChannels(self):
@@ -266,81 +343,6 @@ class MainWindow(QMainWindow):
         self.toolbarView.setObjectName('toolbarView')
         self.toolbarView.addAction(self.actionFullScreen)
         self.toolbarView.visibilityChanged.connect(lambda visible: self.actionToolbarView.setChecked(visible))
-
-
-    def readSettings(self):
-
-        settings = QSettings()
-
-        # Preferences
-        self._preferences.load(settings)
-
-        # Application and dialog properties
-        applicationGeometry = settings.value('Application/Geometry', QByteArray())
-        applicationState = settings.value('Application/State', QByteArray())
-        self.aboutDialogGeometry = settings.value('AboutDialog/Geometry', QByteArray())
-        self.colophonDialogGeometry = settings.value('ColophonDialog/Geometry', QByteArray())
-        self.preferencesDialogGeometry = settings.value('PreferencesDialog/Geometry', QByteArray())
-
-        # Set application properties
-        geometry = applicationGeometry if self._preferences.restoreApplicationGeometry() else QByteArray()
-        state = applicationState if self._preferences.restoreApplicationState() else QByteArray()
-        self.setApplicationGeometry(geometry)
-        self.setApplicationState(state)
-
-
-    def writeSettings(self):
-
-        settings = QSettings()
-
-        # Preferences
-        self._preferences.save(settings)
-
-        # Application and dialog properties
-        geometry = self.applicationGeometry() if self._preferences.restoreApplicationGeometry() else QByteArray()
-        state = self.applicationState() if self._preferences.restoreApplicationState() else QByteArray()
-        settings.setValue('Application/Geometry', geometry)
-        settings.setValue('Application/State', state)
-        settings.setValue('AboutDialog/Geometry', self.aboutDialogGeometry)
-        settings.setValue('ColophonDialog/Geometry', self.colophonDialogGeometry)
-        settings.setValue('PreferencesDialog/Geometry', self.preferencesDialogGeometry)
-
-
-    def setApplicationGeometry(self, geometry=QByteArray()):
-
-        if geometry:
-            self.restoreGeometry(geometry)
-        else:
-            availableGeometry = QRect(QApplication.desktop().availableGeometry(self))
-            self.resize(availableGeometry.width() * 2/3, availableGeometry.height() * 2/3)
-            self.move((availableGeometry.width() - self.width()) / 2, (availableGeometry.height() - self.height()) / 2)
-
-
-    def applicationGeometry(self):
-
-        return self.saveGeometry()
-
-
-    def setApplicationState(self, state=QByteArray()):
-
-        if state:
-            self.restoreState(state)
-        else:
-            self.toolbarApplication.setVisible(True)
-            self.toolbarChannels.setVisible(True)
-            self.toolbarTools.setVisible(False)
-            self.toolbarView.setVisible(False)
-
-
-    def applicationState(self):
-
-        return self.saveState()
-
-
-    def closeEvent(self, event):
-
-        self.writeSettings()
-        event.accept()
 
 
     def onActionAboutTriggered(self):

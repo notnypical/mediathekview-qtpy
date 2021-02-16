@@ -31,9 +31,9 @@ class ColophonAboutPage(QWidget):
         textBox.setStyleSheet('background-color:transparent;')
         textBox.setOpenExternalLinks(True)
         textBox.setHtml(self.tr(f'''<html><body>
-            <p>{QApplication.applicationName()} is an open source front-end tool written in Qt for Python and designed for easy access to the <a href="https://mediathekview.de">MediathekView</a> database.</p>
-            <p>Copyright &copy; 2020-2021 <a href="{QApplication.organizationDomain()}">{QApplication.organizationName()}</a>.</p>
-            <p>This application is licensed under the terms of the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License, version 3</a>.</p>
+            <p>{QApplication.applicationName()} is an open source front-end tool written in Qt for Python and designed for easy access to the <a href="https://mediathekview.de" title="Visit MediathekView's homepage">MediathekView</a> database.</p>
+            <p>Copyright &copy; 2020-2021 <a href="{QApplication.organizationDomain()}" title="Visit organization's homepage">{QApplication.organizationName()}</a>.</p>
+            <p>This application is licensed under the terms of the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" title="Visit license's homepage">GNU General Public License, version 3</a>.</p>
             </body></html>'''))
 
         # Main layout

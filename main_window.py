@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
 
         self.createActions()
         self.createMenus()
-        self.createToolbars()
+        self.createToolBars()
 
         self.setApplicationState(self._applicationState)
         self.setApplicationGeometry(self._applicationGeometry)
@@ -130,24 +130,24 @@ class MainWindow(QMainWindow):
     def createChannels(self):
 
         self.listChannels = {
-            '3sat': ['3sat'],
-            'ard': ['ARD', 'Das Erste'],
-            'arteDe': ['ARTE.de'],
-            'arteFr': ['ARTE.fr'],
-            'br': ['BR', 'Bayerischer Rundfunk'],
-            'dw': ['DW TV', 'Deutsche Welle'],
-            'hr': ['HR', 'Hessischer Rundfunk'],
-            'kika': ['KiKA', 'Kinderkanal von ARD und ZDF'],
-            'mdr': ['MDR', 'Mitteldeutscher Rundfunk'],
-            'ndr': ['NDR', 'Norddeutscher Rundfunk'],
-            'orf': ['ORF', 'Österreichischer Rundfunk'],
-            'phoenix': ['phoenix'],
-            'rbb': ['RBB', 'Rundfunk Berlin-Brandenburg'],
-            'sr': ['SR', 'Saarländischer Rundfunk'],
-            'srf': ['SRF', 'Schweizer Rundfunk'],
-            'swr': ['SWR', 'Südwestrundfunk'],
-            'wdr': ['WDR', 'Westdeutscher Rundfunk'],
-            'zdf': ['ZDF', 'Zweites Deutsches Fernsehen']
+            '3sat': [self.tr('3sat'), ''],
+            'ard': [self.tr('ARD'), self.tr('Das Erste')],
+            'arteDe': [self.tr('ARTE.de'), ''],
+            'arteFr': [self.tr('ARTE.fr'), ''],
+            'br': [self.tr('BR'), self.tr('Bayerischer Rundfunk')],
+            'dw': [self.tr('DW TV'), self.tr('Deutsche Welle')],
+            'hr': [self.tr('HR'), self.tr('Hessischer Rundfunk')],
+            'kika': [self.tr('KiKA'), self.tr('Kinderkanal von ARD und ZDF')],
+            'mdr': [self.tr('MDR'), self.tr('Mitteldeutscher Rundfunk')],
+            'ndr': [self.tr('NDR'), self.tr('Norddeutscher Rundfunk')],
+            'orf': [self.tr('ORF'), self.tr('Österreichischer Rundfunk')],
+            'phoenix': [self.tr('phoenix'), ''],
+            'rbb': [self.tr('RBB'), self.tr('Rundfunk Berlin-Brandenburg')],
+            'sr': [self.tr('SR'), self.tr('Saarländischer Rundfunk')],
+            'srf': [self.tr('SRF'), self.tr('Schweizer Rundfunk')],
+            'swr': [self.tr('SWR'), self.tr('Südwestrundfunk')],
+            'wdr': [self.tr('WDR'), self.tr('Westdeutscher Rundfunk')],
+            'zdf': [self.tr('ZDF'), self.tr('Zweites Deutsches Fernsehen')]
         }
 
 
@@ -163,7 +163,6 @@ class MainWindow(QMainWindow):
 
         self.actionColophon = QAction(self.tr('Colophon'), self)
         self.actionColophon.setObjectName('actionColophon')
-        self.actionColophon.setIconText(self.tr('Colophon'))
         self.actionColophon.setToolTip(self.tr('Lengthy description of the application'))
         self.actionColophon.triggered.connect(self.onActionColophonTriggered)
 
@@ -183,29 +182,25 @@ class MainWindow(QMainWindow):
         self.actionQuit.triggered.connect(self.close)
 
         # Action: Channels
-        self.actionLiveStreams = QAction(self.tr('Live streams'), self)
+        self.actionLiveStreams = QAction(self.tr('Live Streams'), self)
         self.actionLiveStreams.setObjectName('actionLiveStreams')
         self.actionLiveStreams.setIcon(QIcon.fromTheme('network-wireless-hotspot', QIcon(':/icons/actions/16/live-stream.svg')))
-        self.actionLiveStreams.setIconText(self.tr('Live streams'))
+        self.actionLiveStreams.setIconText(self.tr('Live'))
         self.actionLiveStreams.setCheckable(True)
         self.actionLiveStreams.setToolTip(self.tr('Show all live streaming channels'))
         self.actionLiveStreams.toggled.connect(lambda checked: self.onActionLiveStreamsToggled(checked))
 
         self.actionChannels = []
-        for it in self.listChannels:
+        for key, value in sorted(self.listChannels.items()):
 
-            if len(self.listChannels[it]) > 1:
-                text = self.tr(f'{self.listChannels[it][0]} ({self.listChannels[it][1]})')
-            else:
-                text = f'{self.listChannels[it][0]}'
+            text = self.tr(f'{value[0]} ({value[1]})') if not value[1] == '' else value[0]
 
             channel = QAction(text, self)
-            channel.setObjectName(f'actionChannel_{it}')
-            channel.setIconText(self.listChannels[it][0])
+            channel.setObjectName(f'actionChannel_{key}')
+            channel.setIconText(value[0])
             channel.setCheckable(True)
             channel.setToolTip(self.tr(f'Show all programs of channel {text}'))
-            channel.setData(text)
-            channel.toggled.connect(lambda checked: self.onActionChannelsToggled(it, checked))
+            channel.toggled.connect(lambda checked: self.onActionChannelsToggled(channel.objectName(), checked))
 
             self.actionChannels.append(channel)
 
@@ -229,8 +224,8 @@ class MainWindow(QMainWindow):
         # Actions: View
         self.actionFullScreen = QAction(self)
         self.actionFullScreen.setObjectName('actionFullScreen')
-        self.actionFullScreen.setCheckable(True)
         self.actionFullScreen.setIconText(self.tr('Full Screen'))
+        self.actionFullScreen.setCheckable(True)
         self.actionFullScreen.setShortcuts([QKeySequence(Qt.Key_F11), QKeySequence.FullScreen])
         self.actionFullScreen.triggered.connect(self.onActionFullScreenTriggered)
 
@@ -310,7 +305,7 @@ class MainWindow(QMainWindow):
         menuView.addAction(self.actionToolbarView)
 
 
-    def createToolbars(self):
+    def createToolBars(self):
 
         # Toolbar: Application
         self.toolbarApplication = self.addToolBar(self.tr('Application Toolbar'))
@@ -399,9 +394,9 @@ class MainWindow(QMainWindow):
             widget.style().polish(widget)
 
             if checked:
-                self.actionChannels[i].setToolTip(self.tr(f'Hide all programs of channel {self.actionChannels[i].data()}'))
+                self.actionChannels[i].setToolTip(self.tr(f'Hide all programs of channel {self.actionChannels[i].text()}'))
             else:
-                self.actionChannels[i].setToolTip(self.tr(f'Show all programs of channel {self.actionChannels[i].data()}'))
+                self.actionChannels[i].setToolTip(self.tr(f'Show all programs of channel {self.actionChannels[i].text()}'))
 
 
     def onActionUpdateTriggered(self):

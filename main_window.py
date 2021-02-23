@@ -292,8 +292,8 @@ class MainWindow(QMainWindow):
 
         # Menu: Tools
         menuTools = self.menuBar().addMenu(self.tr('Tools'))
-        menuTools.addAction(self.actionUpdate)
         menuTools.setObjectName('menuTools')
+        menuTools.addAction(self.actionUpdate)
 
         # Menu: View
         menuView = self.menuBar().addMenu(self.tr('View'))
@@ -304,6 +304,10 @@ class MainWindow(QMainWindow):
         menuView.addAction(self.actionToolbarChannels)
         menuView.addAction(self.actionToolbarTools)
         menuView.addAction(self.actionToolbarView)
+
+        # Menu: help
+        menuHelp = self.menuBar().addMenu(self.tr('Help'))
+        menuHelp.setObjectName('menuHelp')
 
 
     def createToolBars(self):

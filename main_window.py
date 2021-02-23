@@ -61,7 +61,7 @@ class MainWindow(QMainWindow):
         else:
             self.toolbarApplication.setVisible(True)
             self.toolbarChannels.setVisible(True)
-            self.toolbarTools.setVisible(False)
+            self.toolbarTools.setVisible(True)
             self.toolbarView.setVisible(False)
 
 
@@ -88,6 +88,7 @@ class MainWindow(QMainWindow):
     def closeEvent(self, event):
 
         if True:
+            # Application properties
             self._applicationState = self.applicationState() if self._preferences.restoreApplicationState() else QByteArray()
             self._applicationGeometry = self.applicationGeometry() if self._preferences.restoreApplicationGeometry() else QByteArray()
 
@@ -104,7 +105,7 @@ class MainWindow(QMainWindow):
         # Preferences
         self._preferences.load(settings)
 
-        # Application properties
+        # Application and dialog properties
         self._applicationState = settings.value('Application/State', QByteArray()) if self._preferences.restoreApplicationState() else QByteArray()
         self._applicationGeometry = settings.value('Application/Geometry', QByteArray()) if self._preferences.restoreApplicationGeometry() else QByteArray()
         self.aboutDialogGeometry = settings.value('AboutDialog/Geometry', QByteArray())
@@ -119,7 +120,7 @@ class MainWindow(QMainWindow):
         # Preferences
         self._preferences.save(settings)
 
-        # Application properties
+        # Application and dialog properties
         settings.setValue('Application/State', self._applicationState)
         settings.setValue('Application/Geometry', self._applicationGeometry)
         settings.setValue('AboutDialog/Geometry', self.aboutDialogGeometry)

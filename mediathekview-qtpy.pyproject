@@ -8,12 +8,12 @@
         "colophon_environment_page.py",
         "colophon_license_page.py",
         "dialog_title_box.py",
+        "icons.qrc",
         "main.py",
         "main_window.py",
         "preferences.py",
         "preferences_database_page.py",
         "preferences_dialog.py",
-        "preferences_general_page.py",
-        "resources.qrc"
+        "preferences_general_page.py"
     ]
 }

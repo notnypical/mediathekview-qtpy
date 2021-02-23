@@ -51,6 +51,7 @@ class MainWindow(QMainWindow):
         self.setApplicationState(self._applicationState)
         self.setApplicationGeometry(self._applicationGeometry)
 
+        self.updateActionChannels()
         self.updateActionFullScreen()
 
 
@@ -201,7 +202,6 @@ class MainWindow(QMainWindow):
             channel.setObjectName(f'actionChannel_{key}')
             channel.setIconText(value[0])
             channel.setCheckable(True)
-            channel.setToolTip(self.tr(f'Show all programs of channel {text}'))
             channel.toggled.connect(lambda checked: self.onActionChannelsToggled(channel.objectName(), checked))
 
             self.actionChannels.append(channel)
@@ -260,20 +260,6 @@ class MainWindow(QMainWindow):
         self.actionToolbarHelp.setCheckable(True)
         self.actionToolbarHelp.setToolTip(self.tr('Display the Help toolbar'))
         self.actionToolbarHelp.toggled.connect(lambda checked: self.toolbarHelp.setVisible(checked))
-
-
-    def updateActionFullScreen(self):
-
-        if not self.isFullScreen():
-            self.actionFullScreen.setText(self.tr('Full Screen Mode'))
-            self.actionFullScreen.setIcon(QIcon.fromTheme('view-fullscreen', QIcon(':/icons/actions/16/view-fullscreen.svg')))
-            self.actionFullScreen.setChecked(False)
-            self.actionFullScreen.setToolTip(self.tr(f'Display the window in full screen [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]'))
-        else:
-            self.actionFullScreen.setText(self.tr('Exit Full Screen Mode'))
-            self.actionFullScreen.setIcon(QIcon.fromTheme('view-restore', QIcon(':/icons/actions/16/view-restore.svg')))
-            self.actionFullScreen.setChecked(True)
-            self.actionFullScreen.setToolTip(self.tr(f'Exit the full screen mode [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]'))
 
 
     def createMenus(self):
@@ -358,6 +344,36 @@ class MainWindow(QMainWindow):
         self.toolbarHelp.visibilityChanged.connect(lambda visible: self.actionToolbarHelp.setChecked(visible))
 
 
+    def updateActionChannels(self, invert=False):
+
+        # Tool buttons
+        for idx in range(len(self.actionChannels)):
+
+            widget = self.toolbarChannels.widgetForAction(self.actionChannels[idx])
+            widget.setProperty('invertChannel', invert)
+            widget.style().unpolish(widget)
+            widget.style().polish(widget)
+
+            if not invert:
+                self.actionChannels[idx].setToolTip(self.tr(f'Show all programs of channel {self.actionChannels[idx].text()}'))
+            else:
+                self.actionChannels[idx].setToolTip(self.tr(f'Hide all programs of channel {self.actionChannels[idx].text()}'))
+
+
+    def updateActionFullScreen(self):
+
+        if not self.isFullScreen():
+            self.actionFullScreen.setText(self.tr('Full Screen Mode'))
+            self.actionFullScreen.setIcon(QIcon.fromTheme('view-fullscreen', QIcon(':/icons/actions/16/view-fullscreen.svg')))
+            self.actionFullScreen.setChecked(False)
+            self.actionFullScreen.setToolTip(self.tr(f'Display the window in full screen [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]'))
+        else:
+            self.actionFullScreen.setText(self.tr('Exit Full Screen Mode'))
+            self.actionFullScreen.setIcon(QIcon.fromTheme('view-restore', QIcon(':/icons/actions/16/view-restore.svg')))
+            self.actionFullScreen.setChecked(True)
+            self.actionFullScreen.setToolTip(self.tr(f'Exit the full screen mode [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]'))
+
+
     def onActionAboutTriggered(self):
 
         geometry = self.aboutDialogGeometry if self._preferences.restoreDialogGeometry() else QByteArray()
@@ -403,18 +419,7 @@ class MainWindow(QMainWindow):
 
     def onActionSelectInvertToggled(self, checked):
 
-        # Tool buttons
-        for i in range(len(self.actionChannels)):
-
-            widget = self.toolbarChannels.widgetForAction(self.actionChannels[i])
-            widget.setProperty('invertChannel', checked)
-            widget.style().unpolish(widget)
-            widget.style().polish(widget)
-
-            if checked:
-                self.actionChannels[i].setToolTip(self.tr(f'Hide all programs of channel {self.actionChannels[i].text()}'))
-            else:
-                self.actionChannels[i].setToolTip(self.tr(f'Show all programs of channel {self.actionChannels[i].text()}'))
+        self.updateActionChannels(checked)
 
 
     def onActionUpdateTriggered(self):

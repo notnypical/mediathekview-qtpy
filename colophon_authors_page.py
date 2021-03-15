@@ -2,7 +2,7 @@
 #
 # Copyright 2020-2021 NotNypical, <https://notnypical.github.io>.
 #
-# This file is part of MediathekView-QtPy.
+# This file is part of MediathekView-QtPy, <https://github.com/notnypical/mediathekview-qtpy>.
 #
 # MediathekView-QtPy is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

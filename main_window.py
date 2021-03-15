@@ -134,10 +134,10 @@ class MainWindow(QMainWindow):
     def createChannels(self):
 
         self.listChannels = {
-            '3sat': [self.tr('3sat'), ''],
+            '3sat': [self.tr('3sat'), None],
             'ard': [self.tr('ARD'), self.tr('Das Erste')],
-            'arteDe': [self.tr('ARTE.de'), ''],
-            'arteFr': [self.tr('ARTE.fr'), ''],
+            'arteDe': [self.tr('ARTE.de'), None],
+            'arteFr': [self.tr('ARTE.fr'), None],
             'br': [self.tr('BR'), self.tr('Bayerischer Rundfunk')],
             'dw': [self.tr('DW TV'), self.tr('Deutsche Welle')],
             'hr': [self.tr('HR'), self.tr('Hessischer Rundfunk')],
@@ -145,7 +145,7 @@ class MainWindow(QMainWindow):
             'mdr': [self.tr('MDR'), self.tr('Mitteldeutscher Rundfunk')],
             'ndr': [self.tr('NDR'), self.tr('Norddeutscher Rundfunk')],
             'orf': [self.tr('ORF'), self.tr('Österreichischer Rundfunk')],
-            'phoenix': [self.tr('phoenix'), ''],
+            'phoenix': [self.tr('phoenix'), None],
             'rbb': [self.tr('RBB'), self.tr('Rundfunk Berlin-Brandenburg')],
             'sr': [self.tr('SR'), self.tr('Saarländischer Rundfunk')],
             'srf': [self.tr('SRF'), self.tr('Schweizer Rundfunk')],
@@ -197,15 +197,16 @@ class MainWindow(QMainWindow):
         self.actionChannels = []
         for key, value in sorted(self.listChannels.items()):
 
-            text = self.tr(f'{value[0]} ({value[1]})') if not value[1] == '' else value[0]
+            text = self.tr(f'{value[0]} ({value[1]})') if value[1] else value[0]
 
-            channel = QAction(text, self)
-            channel.setObjectName(f'actionChannel_{key}')
-            channel.setIconText(value[0])
-            channel.setCheckable(True)
-            channel.toggled.connect(lambda checked: self.onActionChannelsToggled(channel.objectName(), checked))
+            actionChannel = QAction(text, self)
+            actionChannel.setObjectName(f'actionChannel_{key}')
+            actionChannel.setIconText(value[0])
+            actionChannel.setCheckable(True)
+            actionChannel.setData(key)
+            actionChannel.toggled.connect(lambda checked, channel=actionChannel.data() : self.onActionChannelsToggled(checked, channel))
 
-            self.actionChannels.append(channel)
+            self.actionChannels.append(actionChannel)
 
         self.actionSelectInvert = QAction(self.tr('Invert Selection'), self)
         self.actionSelectInvert.setObjectName('actionSelectInvert')
@@ -414,7 +415,7 @@ class MainWindow(QMainWindow):
         pass
 
 
-    def onActionChannelsToggled(self, channel, checked):
+    def onActionChannelsToggled(self, checked, channel):
         pass
 
 

@@ -7,6 +7,7 @@
         <file alias="live-stream.svg">icons/actions/16/live-stream.svg</file>
         <file alias="view-fullscreen.svg">icons/actions/16/view-fullscreen.svg</file>
         <file alias="view-restore.svg">icons/actions/16/view-restore.svg</file>
+        <file alias="help-keyboard-shortcuts.svg">icons/actions/16/help-keyboard-shortcuts.svg</file>
     </qresource>
     <qresource prefix="/icons/apps/16">
         <file alias="mediathekview.svg">icons/apps/16/mediathekview.svg</file>

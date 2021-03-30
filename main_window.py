@@ -232,6 +232,14 @@ class MainWindow(QMainWindow):
         self.actionToolbarHelp.setToolTip(self.tr('Display the Help toolbar'))
         self.actionToolbarHelp.toggled.connect(lambda checked: self.toolbarHelp.setVisible(checked))
 
+        # Actions: Help
+        self.actionKeyboardShortcuts = QAction(self.tr('Keyboard Shortcuts'), self)
+        self.actionKeyboardShortcuts.setObjectName('actionKeyboardShortcuts')
+        self.actionKeyboardShortcuts.setIcon(QIcon.fromTheme('help-keyboard-shortcuts', QIcon(':/icons/actions/16/help-keyboard-shortcuts.svg')))
+        self.actionKeyboardShortcuts.setIconText(self.tr('Shortcuts'))
+        self.actionKeyboardShortcuts.setToolTip(self.tr('List of all keyboard shortcuts'))
+        self.actionKeyboardShortcuts.triggered.connect(self.onActionKeyboardShortcutsTriggered)
+
 
     def createMenus(self):
 
@@ -273,6 +281,7 @@ class MainWindow(QMainWindow):
         # Menu: help
         menuHelp = self.menuBar().addMenu(self.tr('Help'))
         menuHelp.setObjectName('menuHelp')
+        menuHelp.addAction(self.actionKeyboardShortcuts)
 
 
     def createToolBars(self):
@@ -312,6 +321,7 @@ class MainWindow(QMainWindow):
         # Toolbar: Help
         self.toolbarHelp = self.addToolBar(self.tr('Help Toolbar'))
         self.toolbarHelp.setObjectName('toolbarHelp')
+        self.toolbarHelp.addAction(self.actionKeyboardShortcuts)
         self.toolbarHelp.visibilityChanged.connect(lambda visible: self.actionToolbarHelp.setChecked(visible))
 
 
@@ -391,3 +401,7 @@ class MainWindow(QMainWindow):
             self.setWindowState(self.windowState() & ~Qt.WindowFullScreen)
 
         self.updateActionFullScreen()
+
+
+    def onActionKeyboardShortcutsTriggered(self):
+        pass

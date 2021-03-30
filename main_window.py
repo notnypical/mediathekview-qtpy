@@ -151,7 +151,7 @@ class MainWindow(QMainWindow):
         self.actionQuit.setObjectName('actionQuit')
         self.actionQuit.setIcon(QIcon.fromTheme('application-exit', QIcon(':/icons/actions/16/application-exit.svg')))
         self.actionQuit.setShortcut(QKeySequence.Quit)
-        self.actionQuit.setToolTip(self.tr(f'Quit the application [{self.actionQuit.shortcut().toString(QKeySequence.NativeText)}]'))
+        self.actionQuit.setToolTip(self.tr('Quit the application'))
         self.actionQuit.triggered.connect(self.close)
 
         # Action: Channels
@@ -191,7 +191,7 @@ class MainWindow(QMainWindow):
         self.actionUpdate.setIcon(QIcon.fromTheme('edit-download', QIcon(':/icons/actions/16/edit-download.svg')))
         self.actionUpdate.setIconText(self.tr('Update'))
         self.actionUpdate.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_F5))
-        self.actionUpdate.setToolTip(self.tr(f'Update the local database [{self.actionUpdate.shortcut().toString(QKeySequence.NativeText)}]'))
+        self.actionUpdate.setToolTip(self.tr('Update the local database'))
         self.actionUpdate.triggered.connect(self.onActionUpdateTriggered)
 
         # Actions: View
@@ -337,12 +337,12 @@ class MainWindow(QMainWindow):
             self.actionFullScreen.setText(self.tr('Full Screen Mode'))
             self.actionFullScreen.setIcon(QIcon.fromTheme('view-fullscreen', QIcon(':/icons/actions/16/view-fullscreen.svg')))
             self.actionFullScreen.setChecked(False)
-            self.actionFullScreen.setToolTip(self.tr(f'Display the window in full screen [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]'))
+            self.actionFullScreen.setToolTip(self.tr('Display the window in full screen'))
         else:
             self.actionFullScreen.setText(self.tr('Exit Full Screen Mode'))
             self.actionFullScreen.setIcon(QIcon.fromTheme('view-restore', QIcon(':/icons/actions/16/view-restore.svg')))
             self.actionFullScreen.setChecked(True)
-            self.actionFullScreen.setToolTip(self.tr(f'Exit the full screen mode [{self.actionFullScreen.shortcut().toString(QKeySequence.NativeText)}]'))
+            self.actionFullScreen.setToolTip(self.tr('Exit the full screen mode'))
 
 
     def onActionAboutTriggered(self):

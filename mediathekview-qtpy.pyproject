@@ -10,6 +10,7 @@
         "dialog_title_box.py",
         "icons.qrc",
         "keyboard_shortcuts_dialog.py",
+        "keyboard_shortcuts_page.py",
         "main.py",
         "main_window.py",
         "preferences.py",

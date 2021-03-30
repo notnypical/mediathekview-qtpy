@@ -111,7 +111,6 @@ class MainWindow(QMainWindow):
         # Application and dialog properties
         self._applicationState = settings.value('Application/State', QByteArray()) if self._preferences.restoreApplicationState() else QByteArray()
         self._applicationGeometry = settings.value('Application/Geometry', QByteArray()) if self._preferences.restoreApplicationGeometry() else QByteArray()
-        self._preferencesDialogGeometry = settings.value('PreferencesDialog/Geometry', QByteArray())
 
 
     def saveSettings(self):
@@ -124,7 +123,6 @@ class MainWindow(QMainWindow):
         # Application and dialog properties
         settings.setValue('Application/State', self._applicationState)
         settings.setValue('Application/Geometry', self._applicationGeometry)
-        settings.setValue('PreferencesDialog/Geometry', self._preferencesDialogGeometry)
 
 
     def createChannels(self):
@@ -386,15 +384,11 @@ class MainWindow(QMainWindow):
 
     def onActionPreferencesTriggered(self):
 
-        geometry = self._preferencesDialogGeometry if self._preferences.restoreDialogGeometry() else QByteArray()
-
         dialog = PreferencesDialog(self)
-        dialog.setDialogGeometry(geometry)
         dialog.setPreferences(self._preferences)
         dialog.exec_()
 
         self._preferences = dialog.preferences()
-        self._preferencesDialogGeometry = dialog.dialogGeometry() if self._preferences.restoreDialogGeometry() else QByteArray()
 
 
     def onActionLiveStreamsToggled(self, checked):

@@ -40,13 +40,15 @@ class MainWindow(QMainWindow):
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 
-        self.loadSettings()
+        self._preferences.load()
 
         self.createChannels()
 
         self.createActions()
         self.createMenus()
         self.createToolBars()
+
+        self.loadSettings()
 
         # Application properties
         self.setApplicationGeometry(self._applicationGeometry)
@@ -96,6 +98,7 @@ class MainWindow(QMainWindow):
             self._applicationState = self.applicationState() if self._preferences.restoreApplicationState() else QByteArray()
 
             self.saveSettings()
+            self._preferences.save()
             event.accept()
         else:
             event.ignore()
@@ -105,9 +108,6 @@ class MainWindow(QMainWindow):
 
         settings = QSettings()
 
-        # Preferences
-        self._preferences.load(settings)
-
         # Application and dialog properties
         self._applicationGeometry = settings.value('Application/Geometry', QByteArray()) if self._preferences.restoreApplicationGeometry() else QByteArray()
         self._applicationState = settings.value('Application/State', QByteArray()) if self._preferences.restoreApplicationState() else QByteArray()
@@ -116,9 +116,6 @@ class MainWindow(QMainWindow):
     def saveSettings(self):
 
         settings = QSettings()
-
-        # Preferences
-        self._preferences.save(settings)
 
         # Application and dialog properties
         settings.setValue('Application/Geometry', self._applicationGeometry)

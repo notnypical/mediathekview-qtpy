@@ -34,7 +34,7 @@ class KeyboardShortcutsDialog(QDialog):
         self.setWindowTitle(self.tr('Keyboard Shortcuts'))
 
         # Content
-        keyboardShortcutsPage = KeyboardShortcutsPage()
+        keyboardShortcutsPage = KeyboardShortcutsPage(self.parentWidget())
         keyboardShortcutsPage.setZeroMargins()
 
         # Button box

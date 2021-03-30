@@ -9,6 +9,7 @@
         "colophon_license_page.py",
         "dialog_title_box.py",
         "icons.qrc",
+        "keyboard_shortcuts_dialog.py",
         "main.py",
         "main_window.py",
         "preferences.py",

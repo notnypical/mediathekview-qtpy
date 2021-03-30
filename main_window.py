@@ -24,6 +24,7 @@ from PySide2.QtWidgets import QAction, QApplication, QMainWindow
 
 from about_dialog import AboutDialog
 from colophon_dialog import ColophonDialog
+from keyboard_shortcuts_dialog import KeyboardShortcutsDialog
 from preferences import Preferences
 from preferences_dialog import PreferencesDialog
 
@@ -37,6 +38,8 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
+        self._keyboardShortcutsDialog = None
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 
@@ -404,4 +407,10 @@ class MainWindow(QMainWindow):
 
 
     def onActionKeyboardShortcutsTriggered(self):
-        pass
+
+        if not self._keyboardShortcutsDialog:
+            self._keyboardShortcutsDialog = KeyboardShortcutsDialog(self)
+
+        self._keyboardShortcutsDialog.show()
+        self._keyboardShortcutsDialog.raise_()
+        self._keyboardShortcutsDialog.activateWindow()

@@ -37,7 +37,7 @@ class PreferencesDatabasePage(QWidget):
         # Main layout
         self.layout = QVBoxLayout(self)
         self.layout.addWidget(title)
-        self.layout.addStretch()
+        self.layout.addStretch(1)
 
 
     def title(self):

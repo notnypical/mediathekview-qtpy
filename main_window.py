@@ -49,8 +49,8 @@ class MainWindow(QMainWindow):
         self.createToolBars()
 
         # Application properties
-        self.setApplicationState(self._applicationState)
         self.setApplicationGeometry(self._applicationGeometry)
+        self.setApplicationState(self._applicationState)
 
         self.updateActionChannels()
         self.updateActionFullScreen()
@@ -92,8 +92,8 @@ class MainWindow(QMainWindow):
 
         if True:
             # Application properties
-            self._applicationState = self.applicationState() if self._preferences.restoreApplicationState() else QByteArray()
             self._applicationGeometry = self.applicationGeometry() if self._preferences.restoreApplicationGeometry() else QByteArray()
+            self._applicationState = self.applicationState() if self._preferences.restoreApplicationState() else QByteArray()
 
             self.saveSettings()
             event.accept()
@@ -109,8 +109,8 @@ class MainWindow(QMainWindow):
         self._preferences.load(settings)
 
         # Application and dialog properties
-        self._applicationState = settings.value('Application/State', QByteArray()) if self._preferences.restoreApplicationState() else QByteArray()
         self._applicationGeometry = settings.value('Application/Geometry', QByteArray()) if self._preferences.restoreApplicationGeometry() else QByteArray()
+        self._applicationState = settings.value('Application/State', QByteArray()) if self._preferences.restoreApplicationState() else QByteArray()
 
 
     def saveSettings(self):
@@ -121,8 +121,8 @@ class MainWindow(QMainWindow):
         self._preferences.save(settings)
 
         # Application and dialog properties
-        settings.setValue('Application/State', self._applicationState)
         settings.setValue('Application/Geometry', self._applicationGeometry)
+        settings.setValue('Application/State', self._applicationState)
 
 
     def createChannels(self):

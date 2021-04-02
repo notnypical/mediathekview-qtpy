@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 
-        self._preferences.load()
+        self._preferences.loadSettings()
 
         self.createChannels()
 
@@ -61,7 +61,7 @@ class MainWindow(QMainWindow):
 
         if True:
             self.saveSettings()
-            self._preferences.save()
+            self._preferences.saveSettings()
             event.accept()
         else:
             event.ignore()

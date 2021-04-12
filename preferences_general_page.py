@@ -33,30 +33,31 @@ class PreferencesGeneralPage(QWidget):
         # Title
         title = QLabel(self.tr('<strong style="font-size:large;">General</strong>'))
 
-        # Geometry & State
-        self.chkRestoreApplicationGeometry = QCheckBox(self.tr('Save and restore the application geometry'))
-        self.chkRestoreApplicationGeometry.stateChanged.connect(self.onPreferencesChanged)
+        # Content: Geometry & State
 
-        self.chkRestoreApplicationState = QCheckBox(self.tr('Save and restore the application state'))
-        self.chkRestoreApplicationState.stateChanged.connect(self.onPreferencesChanged)
+        self._chkRestoreApplicationGeometry = QCheckBox(self.tr('Save and restore the application geometry'))
+        self._chkRestoreApplicationGeometry.stateChanged.connect(self._onPreferencesChanged)
+
+        self._chkRestoreApplicationState = QCheckBox(self.tr('Save and restore the application state'))
+        self._chkRestoreApplicationState.stateChanged.connect(self._onPreferencesChanged)
 
         geometryStateLayout = QVBoxLayout()
-        geometryStateLayout.addWidget(self.chkRestoreApplicationGeometry)
-        geometryStateLayout.addWidget(self.chkRestoreApplicationState)
+        geometryStateLayout.addWidget(self._chkRestoreApplicationGeometry)
+        geometryStateLayout.addWidget(self._chkRestoreApplicationState)
 
-        geometryStateGroup = QGroupBox(self.tr('Geometry & State'))
+        geometryStateGroup = QGroupBox(self.tr('Geometry && State'))
         geometryStateGroup.setLayout(geometryStateLayout)
 
         # Main layout
-        self.layout = QVBoxLayout(self)
-        self.layout.addWidget(title)
-        self.layout.addWidget(geometryStateGroup)
-        self.layout.addStretch(1)
+        self._layout = QVBoxLayout(self)
+        self._layout.addWidget(title)
+        self._layout.addWidget(geometryStateGroup)
+        self._layout.addStretch(1)
 
 
     def setZeroMargins(self):
 
-        self.layout.setContentsMargins(0, 0, 0, 0)
+        self._layout.setContentsMargins(0, 0, 0, 0)
 
 
     def title(self):
@@ -64,26 +65,26 @@ class PreferencesGeneralPage(QWidget):
         return self.tr('General')
 
 
-    def onPreferencesChanged(self):
+    def _onPreferencesChanged(self):
 
         self.preferencesChanged.emit()
 
 
     def setRestoreApplicationGeometry(self, checked):
 
-        self.chkRestoreApplicationGeometry.setChecked(checked)
+        self._chkRestoreApplicationGeometry.setChecked(checked)
 
 
     def restoreApplicationGeometry(self):
 
-        return self.chkRestoreApplicationGeometry.isChecked()
+        return self._chkRestoreApplicationGeometry.isChecked()
 
 
     def setRestoreApplicationState(self, checked):
 
-        self.chkRestoreApplicationState.setChecked(checked)
+        self._chkRestoreApplicationState.setChecked(checked)
 
 
     def restoreApplicationState(self):
 
-        return self.chkRestoreApplicationState.isChecked()
+        return self._chkRestoreApplicationState.isChecked()

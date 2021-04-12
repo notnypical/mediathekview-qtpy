@@ -33,41 +33,41 @@ import icons
 
 class MainWindow(QMainWindow):
 
-    _preferences = Preferences()
-
-
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self._keyboardShortcutsDialog = None
-
         self.setWindowIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
 
+        self._keyboardShortcutsDialog = None
+
+        self._preferences = Preferences()
         self._preferences.loadSettings()
 
-        self.createChannels()
+        self._createChannels()
 
-        self.createActions()
-        self.createMenus()
-        self.createToolBars()
+        self._createActions()
+        self._createMenus()
+        self._createToolBars()
 
-        self.loadSettings()
+        self._loadSettings()
 
-        self.updateActionChannels()
-        self.updateActionFullScreen()
+        self._updateActionChannels()
+        self._updateActionFullScreen()
 
 
     def closeEvent(self, event):
 
         if True:
-            self.saveSettings()
+            # Store application properties and preferences
+            self._saveSettings()
             self._preferences.saveSettings()
+
             event.accept()
         else:
             event.ignore()
 
 
-    def loadSettings(self):
+    def _loadSettings(self):
 
         settings = QSettings()
 
@@ -85,14 +85,14 @@ class MainWindow(QMainWindow):
         if not state.isEmpty():
             self.restoreState(state)
         else:
-            self.toolbarApplication.setVisible(True)
-            self.toolbarChannels.setVisible(True)
-            self.toolbarTools.setVisible(True)
-            self.toolbarView.setVisible(False)
-            self.toolbarHelp.setVisible(False)
+            self._toolbarApplication.setVisible(True)
+            self._toolbarChannels.setVisible(True)
+            self._toolbarTools.setVisible(True)
+            self._toolbarView.setVisible(False)
+            self._toolbarHelp.setVisible(False)
 
 
-    def saveSettings(self):
+    def _saveSettings(self):
 
         settings = QSettings()
 
@@ -105,9 +105,9 @@ class MainWindow(QMainWindow):
         settings.setValue('Application/State', state)
 
 
-    def createChannels(self):
+    def _createChannels(self):
 
-        self.listChannels = {
+        self._listChannels = {
             '3sat': [self.tr('3sat'), None],
             'ard': [self.tr('ARD'), self.tr('Das Erste')],
             'arteDe': [self.tr('ARTE.de'), None],
@@ -129,45 +129,47 @@ class MainWindow(QMainWindow):
         }
 
 
-    def createActions(self):
+    def _createActions(self):
 
         # Actions: Application
-        self.actionAbout = QAction(self.tr(f'About {QApplication.applicationName()}'), self)
-        self.actionAbout.setObjectName('actionAbout')
-        self.actionAbout.setIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
-        self.actionAbout.setIconText(self.tr('About'))
-        self.actionAbout.setToolTip(self.tr('Brief description of the application'))
-        self.actionAbout.triggered.connect(self.onActionAboutTriggered)
 
-        self.actionColophon = QAction(self.tr('Colophon'), self)
-        self.actionColophon.setObjectName('actionColophon')
-        self.actionColophon.setToolTip(self.tr('Lengthy description of the application'))
-        self.actionColophon.triggered.connect(self.onActionColophonTriggered)
+        self._actionAbout = QAction(self.tr(f'About {QApplication.applicationName()}'), self)
+        self._actionAbout.setObjectName('actionAbout')
+        self._actionAbout.setIcon(QIcon(':/icons/apps/16/mediathekview.svg'))
+        self._actionAbout.setIconText(self.tr('About'))
+        self._actionAbout.setToolTip(self.tr('Brief description of the application'))
+        self._actionAbout.triggered.connect(self._onActionAboutTriggered)
 
-        self.actionPreferences = QAction(self.tr('Preferences…'), self)
-        self.actionPreferences.setObjectName('actionPreferences')
-        self.actionPreferences.setIcon(QIcon.fromTheme('configure', QIcon(':/icons/actions/16/application-configure.svg')))
-        self.actionPreferences.setToolTip(self.tr('Customize the appearance and behavior of the application'))
-        self.actionPreferences.triggered.connect(self.onActionPreferencesTriggered)
+        self._actionColophon = QAction(self.tr('Colophon'), self)
+        self._actionColophon.setObjectName('actionColophon')
+        self._actionColophon.setToolTip(self.tr('Lengthy description of the application'))
+        self._actionColophon.triggered.connect(self._onActionColophonTriggered)
 
-        self.actionQuit = QAction(self.tr('Quit'), self)
-        self.actionQuit.setObjectName('actionQuit')
-        self.actionQuit.setIcon(QIcon.fromTheme('application-exit', QIcon(':/icons/actions/16/application-exit.svg')))
-        self.actionQuit.setShortcut(QKeySequence.Quit)
-        self.actionQuit.setToolTip(self.tr('Quit the application'))
-        self.actionQuit.triggered.connect(self.close)
+        self._actionPreferences = QAction(self.tr('Preferences…'), self)
+        self._actionPreferences.setObjectName('actionPreferences')
+        self._actionPreferences.setIcon(QIcon.fromTheme('configure', QIcon(':/icons/actions/16/application-configure.svg')))
+        self._actionPreferences.setToolTip(self.tr('Customize the appearance and behavior of the application'))
+        self._actionPreferences.triggered.connect(self._onActionPreferencesTriggered)
+
+        self._actionQuit = QAction(self.tr('Quit'), self)
+        self._actionQuit.setObjectName('actionQuit')
+        self._actionQuit.setIcon(QIcon.fromTheme('application-exit', QIcon(':/icons/actions/16/application-exit.svg')))
+        self._actionQuit.setShortcut(QKeySequence.Quit)
+        self._actionQuit.setToolTip(self.tr('Quit the application'))
+        self._actionQuit.triggered.connect(self.close)
 
         # Action: Channels
-        self.actionLiveStreams = QAction(self.tr('Live Streams'), self)
-        self.actionLiveStreams.setObjectName('actionLiveStreams')
-        self.actionLiveStreams.setIcon(QIcon.fromTheme('network-wireless-hotspot', QIcon(':/icons/actions/16/live-stream.svg')))
-        self.actionLiveStreams.setIconText(self.tr('Live'))
-        self.actionLiveStreams.setCheckable(True)
-        self.actionLiveStreams.setToolTip(self.tr('Show all live streaming channels'))
-        self.actionLiveStreams.toggled.connect(lambda checked: self.onActionLiveStreamsToggled(checked))
 
-        self.actionChannels = []
-        for key, value in sorted(self.listChannels.items()):
+        self._actionLiveStreams = QAction(self.tr('Live Streams'), self)
+        self._actionLiveStreams.setObjectName('actionLiveStreams')
+        self._actionLiveStreams.setIcon(QIcon.fromTheme('network-wireless-hotspot', QIcon(':/icons/actions/16/live-stream.svg')))
+        self._actionLiveStreams.setIconText(self.tr('Live'))
+        self._actionLiveStreams.setCheckable(True)
+        self._actionLiveStreams.setToolTip(self.tr('Show all live streaming channels'))
+        self._actionLiveStreams.toggled.connect(lambda checked: self._onActionLiveStreamsToggled(checked))
+
+        self._actionChannels = []
+        for key, value in sorted(self._listChannels.items()):
 
             text = self.tr(f'{value[0]} ({value[1]})') if value[1] else value[0]
 
@@ -176,201 +178,204 @@ class MainWindow(QMainWindow):
             actionChannel.setIconText(value[0])
             actionChannel.setCheckable(True)
             actionChannel.setData(key)
-            actionChannel.toggled.connect(lambda checked, channel=actionChannel.data() : self.onActionChannelsToggled(checked, channel))
+            actionChannel.toggled.connect(lambda checked, channel=actionChannel.data() : self._onActionChannelsToggled(checked, channel))
 
-            self.actionChannels.append(actionChannel)
+            self._actionChannels.append(actionChannel)
 
-        self.actionSelectInvert = QAction(self.tr('Invert Selection'), self)
-        self.actionSelectInvert.setObjectName('actionSelectInvert')
-        self.actionSelectInvert.setIcon(QIcon.fromTheme('edit-select-invert', QIcon(':/icons/actions/16/edit-select-invert.svg')))
-        self.actionSelectInvert.setIconText(self.tr('Invert'))
-        self.actionSelectInvert.setCheckable(True)
-        self.actionSelectInvert.setToolTip(self.tr('Invert list of selected channels'))
-        self.actionSelectInvert.toggled.connect(lambda checked: self.onActionSelectInvertToggled(checked))
+        self._actionSelectInvert = QAction(self.tr('Invert Selection'), self)
+        self._actionSelectInvert.setObjectName('actionSelectInvert')
+        self._actionSelectInvert.setIcon(QIcon.fromTheme('edit-select-invert', QIcon(':/icons/actions/16/edit-select-invert.svg')))
+        self._actionSelectInvert.setIconText(self.tr('Invert'))
+        self._actionSelectInvert.setCheckable(True)
+        self._actionSelectInvert.setToolTip(self.tr('Invert list of selected channels'))
+        self._actionSelectInvert.toggled.connect(lambda checked: self._onActionSelectInvertToggled(checked))
 
         # Actions: Tools
-        self.actionUpdate = QAction(self.tr('Update Database'), self)
-        self.actionUpdate.setObjectName('actionUpdate')
-        self.actionUpdate.setIcon(QIcon.fromTheme('edit-download', QIcon(':/icons/actions/16/edit-download.svg')))
-        self.actionUpdate.setIconText(self.tr('Update'))
-        self.actionUpdate.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_F5))
-        self.actionUpdate.setToolTip(self.tr('Update the local database'))
-        self.actionUpdate.triggered.connect(self.onActionUpdateTriggered)
+
+        self._actionUpdate = QAction(self.tr('Update Database'), self)
+        self._actionUpdate.setObjectName('actionUpdate')
+        self._actionUpdate.setIcon(QIcon.fromTheme('edit-download', QIcon(':/icons/actions/16/edit-download.svg')))
+        self._actionUpdate.setIconText(self.tr('Update'))
+        self._actionUpdate.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_F5))
+        self._actionUpdate.setToolTip(self.tr('Update the local database'))
+        self._actionUpdate.triggered.connect(self._onActionUpdateTriggered)
 
         # Actions: View
-        self.actionFullScreen = QAction(self)
-        self.actionFullScreen.setObjectName('actionFullScreen')
-        self.actionFullScreen.setIconText(self.tr('Full Screen'))
-        self.actionFullScreen.setCheckable(True)
-        self.actionFullScreen.setShortcuts([QKeySequence(Qt.Key_F11), QKeySequence.FullScreen])
-        self.actionFullScreen.triggered.connect(self.onActionFullScreenTriggered)
 
-        self.actionToolbarApplication = QAction(self.tr('Show Application Toolbar'), self)
-        self.actionToolbarApplication.setObjectName('actionToolbarApplication')
-        self.actionToolbarApplication.setCheckable(True)
-        self.actionToolbarApplication.setToolTip(self.tr('Display the Application toolbar'))
-        self.actionToolbarApplication.toggled.connect(lambda checked: self.toolbarApplication.setVisible(checked))
+        self._actionFullScreen = QAction(self)
+        self._actionFullScreen.setObjectName('actionFullScreen')
+        self._actionFullScreen.setIconText(self.tr('Full Screen'))
+        self._actionFullScreen.setCheckable(True)
+        self._actionFullScreen.setShortcuts([QKeySequence(Qt.Key_F11), QKeySequence.FullScreen])
+        self._actionFullScreen.triggered.connect(self._onActionFullScreenTriggered)
 
-        self.actionToolbarChannels = QAction(self.tr('Show Channels Toolbar'), self)
-        self.actionToolbarChannels.setObjectName('actionToolbarChannels')
-        self.actionToolbarChannels.setCheckable(True)
-        self.actionToolbarChannels.setToolTip(self.tr('Display the Channels toolbar'))
-        self.actionToolbarChannels.toggled.connect(lambda checked: self.toolbarChannels.setVisible(checked))
+        self._actionToolbarApplication = QAction(self.tr('Show Application Toolbar'), self)
+        self._actionToolbarApplication.setObjectName('actionToolbarApplication')
+        self._actionToolbarApplication.setCheckable(True)
+        self._actionToolbarApplication.setToolTip(self.tr('Display the Application toolbar'))
+        self._actionToolbarApplication.toggled.connect(lambda checked: self._toolbarApplication.setVisible(checked))
 
-        self.actionToolbarTools = QAction(self.tr('Show Tools Toolbar'), self)
-        self.actionToolbarTools.setObjectName('actionToolbarTools')
-        self.actionToolbarTools.setCheckable(True)
-        self.actionToolbarTools.setToolTip(self.tr('Display the Tools toolbar'))
-        self.actionToolbarTools.toggled.connect(lambda checked: self.toolbarTools.setVisible(checked))
+        self._actionToolbarChannels = QAction(self.tr('Show Channels Toolbar'), self)
+        self._actionToolbarChannels.setObjectName('actionToolbarChannels')
+        self._actionToolbarChannels.setCheckable(True)
+        self._actionToolbarChannels.setToolTip(self.tr('Display the Channels toolbar'))
+        self._actionToolbarChannels.toggled.connect(lambda checked: self._toolbarChannels.setVisible(checked))
 
-        self.actionToolbarView = QAction(self.tr('Show View Toolbar'), self)
-        self.actionToolbarView.setObjectName('actionToolbarView')
-        self.actionToolbarView.setCheckable(True)
-        self.actionToolbarView.setToolTip(self.tr('Display the View toolbar'))
-        self.actionToolbarView.toggled.connect(lambda checked: self.toolbarView.setVisible(checked))
+        self._actionToolbarTools = QAction(self.tr('Show Tools Toolbar'), self)
+        self._actionToolbarTools.setObjectName('actionToolbarTools')
+        self._actionToolbarTools.setCheckable(True)
+        self._actionToolbarTools.setToolTip(self.tr('Display the Tools toolbar'))
+        self._actionToolbarTools.toggled.connect(lambda checked: self._toolbarTools.setVisible(checked))
 
-        self.actionToolbarHelp = QAction(self.tr('Show Help Toolbar'), self)
-        self.actionToolbarHelp.setObjectName('actionToolbarHelp')
-        self.actionToolbarHelp.setCheckable(True)
-        self.actionToolbarHelp.setToolTip(self.tr('Display the Help toolbar'))
-        self.actionToolbarHelp.toggled.connect(lambda checked: self.toolbarHelp.setVisible(checked))
+        self._actionToolbarView = QAction(self.tr('Show View Toolbar'), self)
+        self._actionToolbarView.setObjectName('actionToolbarView')
+        self._actionToolbarView.setCheckable(True)
+        self._actionToolbarView.setToolTip(self.tr('Display the View toolbar'))
+        self._actionToolbarView.toggled.connect(lambda checked: self._toolbarView.setVisible(checked))
+
+        self._actionToolbarHelp = QAction(self.tr('Show Help Toolbar'), self)
+        self._actionToolbarHelp.setObjectName('actionToolbarHelp')
+        self._actionToolbarHelp.setCheckable(True)
+        self._actionToolbarHelp.setToolTip(self.tr('Display the Help toolbar'))
+        self._actionToolbarHelp.toggled.connect(lambda checked: self._toolbarHelp.setVisible(checked))
 
         # Actions: Help
-        self.actionKeyboardShortcuts = QAction(self.tr('Keyboard Shortcuts'), self)
-        self.actionKeyboardShortcuts.setObjectName('actionKeyboardShortcuts')
-        self.actionKeyboardShortcuts.setIcon(QIcon.fromTheme('help-keyboard-shortcuts', QIcon(':/icons/actions/16/help-keyboard-shortcuts.svg')))
-        self.actionKeyboardShortcuts.setIconText(self.tr('Shortcuts'))
-        self.actionKeyboardShortcuts.setToolTip(self.tr('List of all keyboard shortcuts'))
-        self.actionKeyboardShortcuts.triggered.connect(self.onActionKeyboardShortcutsTriggered)
+
+        self._actionKeyboardShortcuts = QAction(self.tr('Keyboard Shortcuts'), self)
+        self._actionKeyboardShortcuts.setObjectName('actionKeyboardShortcuts')
+        self._actionKeyboardShortcuts.setIcon(QIcon.fromTheme('help-keyboard-shortcuts', QIcon(':/icons/actions/16/help-keyboard-shortcuts.svg')))
+        self._actionKeyboardShortcuts.setIconText(self.tr('Shortcuts'))
+        self._actionKeyboardShortcuts.setToolTip(self.tr('List of all keyboard shortcuts'))
+        self._actionKeyboardShortcuts.triggered.connect(self._onActionKeyboardShortcutsTriggered)
 
 
-    def createMenus(self):
+    def _createMenus(self):
 
         # Menu: Application
         menuApplication = self.menuBar().addMenu(self.tr('Application'))
         menuApplication.setObjectName('menuApplication')
-        menuApplication.addAction(self.actionAbout)
-        menuApplication.addAction(self.actionColophon)
+        menuApplication.addAction(self._actionAbout)
+        menuApplication.addAction(self._actionColophon)
         menuApplication.addSeparator()
-        menuApplication.addAction(self.actionPreferences)
+        menuApplication.addAction(self._actionPreferences)
         menuApplication.addSeparator()
-        menuApplication.addAction(self.actionQuit)
+        menuApplication.addAction(self._actionQuit)
 
         # Menu: Channels
         menuChannels = self.menuBar().addMenu(self.tr('Channels'))
         menuChannels.setObjectName('menuChannels')
-        menuChannels.addAction(self.actionLiveStreams)
+        menuChannels.addAction(self._actionLiveStreams)
         menuChannels.addSeparator()
-        menuChannels.addActions(self.actionChannels)
+        menuChannels.addActions(self._actionChannels)
         menuChannels.addSeparator()
-        menuChannels.addAction(self.actionSelectInvert)
+        menuChannels.addAction(self._actionSelectInvert)
 
         # Menu: Tools
         menuTools = self.menuBar().addMenu(self.tr('Tools'))
         menuTools.setObjectName('menuTools')
-        menuTools.addAction(self.actionUpdate)
+        menuTools.addAction(self._actionUpdate)
 
         # Menu: View
         menuView = self.menuBar().addMenu(self.tr('View'))
         menuView.setObjectName('menuView')
-        menuView.addAction(self.actionFullScreen)
+        menuView.addAction(self._actionFullScreen)
         menuView.addSeparator()
-        menuView.addAction(self.actionToolbarApplication)
-        menuView.addAction(self.actionToolbarChannels)
-        menuView.addAction(self.actionToolbarTools)
-        menuView.addAction(self.actionToolbarView)
-        menuView.addAction(self.actionToolbarHelp)
+        menuView.addAction(self._actionToolbarApplication)
+        menuView.addAction(self._actionToolbarChannels)
+        menuView.addAction(self._actionToolbarTools)
+        menuView.addAction(self._actionToolbarView)
+        menuView.addAction(self._actionToolbarHelp)
 
-        # Menu: help
+        # Menu: Help
         menuHelp = self.menuBar().addMenu(self.tr('Help'))
         menuHelp.setObjectName('menuHelp')
-        menuHelp.addAction(self.actionKeyboardShortcuts)
+        menuHelp.addAction(self._actionKeyboardShortcuts)
 
 
-    def createToolBars(self):
+    def _createToolBars(self):
 
         # Toolbar: Application
-        self.toolbarApplication = self.addToolBar(self.tr('Application Toolbar'))
-        self.toolbarApplication.setObjectName('toolbarApplication')
-        self.toolbarApplication.addAction(self.actionAbout)
-        self.toolbarApplication.addAction(self.actionPreferences)
-        self.toolbarApplication.addSeparator()
-        self.toolbarApplication.addAction(self.actionQuit)
-        self.toolbarApplication.visibilityChanged.connect(lambda visible: self.actionToolbarApplication.setChecked(visible))
+        self._toolbarApplication = self.addToolBar(self.tr('Application Toolbar'))
+        self._toolbarApplication.setObjectName('toolbarApplication')
+        self._toolbarApplication.addAction(self._actionAbout)
+        self._toolbarApplication.addAction(self._actionPreferences)
+        self._toolbarApplication.addSeparator()
+        self._toolbarApplication.addAction(self._actionQuit)
+        self._toolbarApplication.visibilityChanged.connect(lambda visible: self._actionToolbarApplication.setChecked(visible))
 
         # Toolbar: Channels
-        self.toolbarChannels = self.addToolBar(self.tr('Channels Toolbar'))
-        self.toolbarChannels.setObjectName('toolbarChannels')
-        self.toolbarChannels.setStyleSheet('*[invertChannel=true] { text-decoration: line-through; }')
-        self.toolbarChannels.addAction(self.actionLiveStreams)
-        self.toolbarChannels.addSeparator()
-        self.toolbarChannels.addActions(self.actionChannels)
-        self.toolbarChannels.addSeparator()
-        self.toolbarChannels.addAction(self.actionSelectInvert)
-        self.toolbarChannels.visibilityChanged.connect(lambda visible: self.actionToolbarChannels.setChecked(visible))
+        self._toolbarChannels = self.addToolBar(self.tr('Channels Toolbar'))
+        self._toolbarChannels.setObjectName('toolbarChannels')
+        self._toolbarChannels.setStyleSheet('*[invertChannel=true] { text-decoration: line-through; }')
+        self._toolbarChannels.addAction(self._actionLiveStreams)
+        self._toolbarChannels.addSeparator()
+        self._toolbarChannels.addActions(self._actionChannels)
+        self._toolbarChannels.addSeparator()
+        self._toolbarChannels.addAction(self._actionSelectInvert)
+        self._toolbarChannels.visibilityChanged.connect(lambda visible: self._actionToolbarChannels.setChecked(visible))
 
         # Toolbar: Tools
-        self.toolbarTools = self.addToolBar(self.tr('Tools Toolbar'))
-        self.toolbarTools.setObjectName('toolbarTools')
-        self.toolbarTools.addAction(self.actionUpdate)
-        self.toolbarTools.visibilityChanged.connect(lambda visible: self.actionToolbarTools.setChecked(visible))
+        self._toolbarTools = self.addToolBar(self.tr('Tools Toolbar'))
+        self._toolbarTools.setObjectName('toolbarTools')
+        self._toolbarTools.addAction(self._actionUpdate)
+        self._toolbarTools.visibilityChanged.connect(lambda visible: self._actionToolbarTools.setChecked(visible))
 
         # Toolbar: View
-        self.toolbarView = self.addToolBar(self.tr('View Toolbar'))
-        self.toolbarView.setObjectName('toolbarView')
-        self.toolbarView.addAction(self.actionFullScreen)
-        self.toolbarView.visibilityChanged.connect(lambda visible: self.actionToolbarView.setChecked(visible))
+        self._toolbarView = self.addToolBar(self.tr('View Toolbar'))
+        self._toolbarView.setObjectName('toolbarView')
+        self._toolbarView.addAction(self._actionFullScreen)
+        self._toolbarView.visibilityChanged.connect(lambda visible: self._actionToolbarView.setChecked(visible))
 
         # Toolbar: Help
-        self.toolbarHelp = self.addToolBar(self.tr('Help Toolbar'))
-        self.toolbarHelp.setObjectName('toolbarHelp')
-        self.toolbarHelp.addAction(self.actionKeyboardShortcuts)
-        self.toolbarHelp.visibilityChanged.connect(lambda visible: self.actionToolbarHelp.setChecked(visible))
+        self._toolbarHelp = self.addToolBar(self.tr('Help Toolbar'))
+        self._toolbarHelp.setObjectName('toolbarHelp')
+        self._toolbarHelp.addAction(self._actionKeyboardShortcuts)
+        self._toolbarHelp.visibilityChanged.connect(lambda visible: self._actionToolbarHelp.setChecked(visible))
 
 
-    def updateActionChannels(self, invert=False):
+    def _updateActionChannels(self, invert=False):
 
         # Tool buttons
-        for idx in range(len(self.actionChannels)):
+        for idx in range(len(self._actionChannels)):
 
-            widget = self.toolbarChannels.widgetForAction(self.actionChannels[idx])
+            widget = self._toolbarChannels.widgetForAction(self._actionChannels[idx])
             widget.setProperty('invertChannel', invert)
             widget.style().unpolish(widget)
             widget.style().polish(widget)
 
             if not invert:
-                self.actionChannels[idx].setToolTip(self.tr(f'Show all programs of channel {self.actionChannels[idx].text()}'))
+                self._actionChannels[idx].setToolTip(self.tr(f'Show all programs of channel {self._actionChannels[idx].text()}'))
             else:
-                self.actionChannels[idx].setToolTip(self.tr(f'Hide all programs of channel {self.actionChannels[idx].text()}'))
+                self._actionChannels[idx].setToolTip(self.tr(f'Hide all programs of channel {self._actionChannels[idx].text()}'))
 
 
-    def updateActionFullScreen(self):
+    def _updateActionFullScreen(self):
 
         if not self.isFullScreen():
-            self.actionFullScreen.setText(self.tr('Full Screen Mode'))
-            self.actionFullScreen.setIcon(QIcon.fromTheme('view-fullscreen', QIcon(':/icons/actions/16/view-fullscreen.svg')))
-            self.actionFullScreen.setChecked(False)
-            self.actionFullScreen.setToolTip(self.tr('Display the window in full screen'))
+            self._actionFullScreen.setText(self.tr('Full Screen Mode'))
+            self._actionFullScreen.setIcon(QIcon.fromTheme('view-fullscreen', QIcon(':/icons/actions/16/view-fullscreen.svg')))
+            self._actionFullScreen.setChecked(False)
+            self._actionFullScreen.setToolTip(self.tr('Display the window in full screen'))
         else:
-            self.actionFullScreen.setText(self.tr('Exit Full Screen Mode'))
-            self.actionFullScreen.setIcon(QIcon.fromTheme('view-restore', QIcon(':/icons/actions/16/view-restore.svg')))
-            self.actionFullScreen.setChecked(True)
-            self.actionFullScreen.setToolTip(self.tr('Exit the full screen mode'))
+            self._actionFullScreen.setText(self.tr('Exit Full Screen Mode'))
+            self._actionFullScreen.setIcon(QIcon.fromTheme('view-restore', QIcon(':/icons/actions/16/view-restore.svg')))
+            self._actionFullScreen.setChecked(True)
+            self._actionFullScreen.setToolTip(self.tr('Exit the full screen mode'))
 
 
-    def onActionAboutTriggered(self):
+    def _onActionAboutTriggered(self):
 
         dialog = AboutDialog(self)
         dialog.exec_()
 
 
-    def onActionColophonTriggered(self):
+    def _onActionColophonTriggered(self):
 
         dialog = ColophonDialog(self)
         dialog.exec_()
 
 
-    def onActionPreferencesTriggered(self):
+    def _onActionPreferencesTriggered(self):
 
         dialog = PreferencesDialog(self)
         dialog.setPreferences(self._preferences)
@@ -379,34 +384,34 @@ class MainWindow(QMainWindow):
         self._preferences = dialog.preferences()
 
 
-    def onActionLiveStreamsToggled(self, checked):
+    def _onActionLiveStreamsToggled(self, checked):
         pass
 
 
-    def onActionChannelsToggled(self, checked, channel):
+    def _onActionChannelsToggled(self, checked, channel):
         pass
 
 
-    def onActionSelectInvertToggled(self, checked):
+    def _onActionSelectInvertToggled(self, checked):
 
-        self.updateActionChannels(checked)
+        self._updateActionChannels(checked)
 
 
-    def onActionUpdateTriggered(self):
+    def _onActionUpdateTriggered(self):
         pass
 
 
-    def onActionFullScreenTriggered(self):
+    def _onActionFullScreenTriggered(self):
 
         if not self.isFullScreen():
             self.setWindowState(self.windowState() | Qt.WindowFullScreen)
         else:
             self.setWindowState(self.windowState() & ~Qt.WindowFullScreen)
 
-        self.updateActionFullScreen()
+        self._updateActionFullScreen()
 
 
-    def onActionKeyboardShortcutsTriggered(self):
+    def _onActionKeyboardShortcutsTriggered(self):
 
         if not self._keyboardShortcutsDialog:
             self._keyboardShortcutsDialog = KeyboardShortcutsDialog(self)

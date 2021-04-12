@@ -33,11 +33,18 @@ class PreferencesDatabasePage(QWidget):
         # Title
         title = QLabel(self.tr('<strong style="font-size:large;">Database</strong>'))
 
+        # Content
+
 
         # Main layout
-        self.layout = QVBoxLayout(self)
-        self.layout.addWidget(title)
-        self.layout.addStretch(1)
+        self._layout = QVBoxLayout(self)
+        self._layout.addWidget(title)
+        self._layout.addStretch(1)
+
+
+    def setZeroMargins(self):
+
+        self._layout.setContentsMargins(0, 0, 0, 0)
 
 
     def title(self):
@@ -45,11 +52,6 @@ class PreferencesDatabasePage(QWidget):
         return self.tr('Database')
 
 
-    def setZeroMargins(self):
-
-        self.layout.setContentsMargins(0, 0, 0, 0)
-
-
-    def onPreferencesChanged(self):
+    def _onPreferencesChanged(self):
 
         self.preferencesChanged.emit()

@@ -27,32 +27,32 @@ from preferences_general_page import PreferencesGeneralPage
 
 class PreferencesDialog(QDialog):
 
-    _preferences = Preferences()
-
-
     def __init__(self, parent=None):
         super().__init__(parent)
 
         self.setMinimumSize(800, 600)
         self.setWindowTitle(self.tr('Preferences'))
 
-        # Preferences box
-        self.generalPage = PreferencesGeneralPage(self)
-        self.generalPage.setZeroMargins()
-        self.generalPage.preferencesChanged.connect(self.onPreferencesChanged)
+        self._preferences = Preferences()
 
-        self.databasePage = PreferencesDatabasePage(self)
-        self.databasePage.setZeroMargins()
-        self.databasePage.preferencesChanged.connect(self.onPreferencesChanged)
+        # Content
+
+        self._generalPage = PreferencesGeneralPage()
+        self._generalPage.setZeroMargins()
+        self._generalPage.preferencesChanged.connect(self._onPreferencesChanged)
+
+        self._databasePage = PreferencesDatabasePage()
+        self._databasePage.setZeroMargins()
+        self._databasePage.preferencesChanged.connect(self._onPreferencesChanged)
 
         stackedBox = QStackedWidget()
-        stackedBox.addWidget(self.generalPage)
-        stackedBox.addWidget(self.databasePage)
+        stackedBox.addWidget(self._generalPage)
+        stackedBox.addWidget(self._databasePage)
         stackedBox.setCurrentIndex(0)
 
         listBox = QListWidget()
-        listBox.addItem(self.generalPage.title())
-        listBox.addItem(self.databasePage.title())
+        listBox.addItem(self._generalPage.title())
+        listBox.addItem(self._databasePage.title())
         listBox.setCurrentRow(stackedBox.currentIndex())
         listBox.currentRowChanged.connect(stackedBox.setCurrentIndex)
 
@@ -62,10 +62,10 @@ class PreferencesDialog(QDialog):
 
         # Button box
         buttonBox = QDialogButtonBox(QDialogButtonBox.RestoreDefaults | QDialogButtonBox.Ok | QDialogButtonBox.Apply | QDialogButtonBox.Cancel)
-        self.buttonApply = buttonBox.button(QDialogButtonBox.Apply)
-        buttonBox.button(QDialogButtonBox.RestoreDefaults).clicked.connect(self.onButtonDefaultsClicked)
-        buttonBox.accepted.connect(self.onButtonOkClicked)
-        buttonBox.button(QDialogButtonBox.Apply).clicked.connect(self.onButtonApplyClicked)
+        self._buttonApply = buttonBox.button(QDialogButtonBox.Apply)
+        buttonBox.button(QDialogButtonBox.RestoreDefaults).clicked.connect(self._onButtonDefaultsClicked)
+        buttonBox.accepted.connect(self._onButtonOkClicked)
+        buttonBox.button(QDialogButtonBox.Apply).clicked.connect(self._onButtonApplyClicked)
         buttonBox.rejected.connect(self.close)
 
         # Main layout
@@ -73,16 +73,16 @@ class PreferencesDialog(QDialog):
         layout.addLayout(preferencesBox)
         layout.addWidget(buttonBox)
 
-        self.updatePreferences()
-        self.buttonApply.setEnabled(False)
+        self._updatePreferences()
+        self._buttonApply.setEnabled(False)
 
 
     def setPreferences(self, preferences):
 
         self._preferences = preferences
 
-        self.updatePreferences()
-        self.buttonApply.setEnabled(False)
+        self._updatePreferences()
+        self._buttonApply.setEnabled(False)
 
 
     def preferences(self):
@@ -90,37 +90,37 @@ class PreferencesDialog(QDialog):
         return self._preferences
 
 
-    def onPreferencesChanged(self):
+    def _onPreferencesChanged(self):
 
-        self.buttonApply.setEnabled(True)
-
-
-    def onButtonDefaultsClicked(self):
-
-        self.updatePreferences(True)
+        self._buttonApply.setEnabled(True)
 
 
-    def onButtonOkClicked(self):
+    def _onButtonDefaultsClicked(self):
 
-        self.savePreferences()
+        self._updatePreferences(True)
+
+
+    def _onButtonOkClicked(self):
+
+        self._savePreferences()
         self.close()
 
 
-    def onButtonApplyClicked(self):
+    def _onButtonApplyClicked(self):
 
-        self.savePreferences()
-        self.buttonApply.setEnabled(False)
-
-
-    def updatePreferences(self, isDefault=False):
-
-        # General: Geometry & State
-        self.generalPage.setRestoreApplicationGeometry(self._preferences.restoreApplicationGeometry(isDefault))
-        self.generalPage.setRestoreApplicationState(self._preferences.restoreApplicationState(isDefault))
+        self._savePreferences()
+        self._buttonApply.setEnabled(False)
 
 
-    def savePreferences(self):
+    def _updatePreferences(self, isDefault=False):
 
         # General: Geometry & State
-        self._preferences.setRestoreApplicationGeometry(self.generalPage.restoreApplicationGeometry())
-        self._preferences.setRestoreApplicationState(self.generalPage.restoreApplicationState())
+        self._generalPage.setRestoreApplicationGeometry(self._preferences.restoreApplicationGeometry(isDefault))
+        self._generalPage.setRestoreApplicationState(self._preferences.restoreApplicationState(isDefault))
+
+
+    def _savePreferences(self):
+
+        # General: Geometry & State
+        self._preferences.setRestoreApplicationGeometry(self._generalPage.restoreApplicationGeometry())
+        self._preferences.setRestoreApplicationState(self._generalPage.restoreApplicationState())

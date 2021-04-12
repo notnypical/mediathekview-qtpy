@@ -9,6 +9,15 @@ A front-end tool for the MediathekView database written in Qt for Python.
 MediathekView-QtPy is an open source front-end tool written in Qt for Python and designed for easy access to the [MediathekView](https://mediathekview.de) database.
 
 
+## Usage
+
+
+### Resources
+
+The resource collection file is converted to a Python module by using the resource compiler rcc:  
+```rcc -g python icons.qrc -o icons_rc.py```
+
+
 ## Copyright
 
 Copyright &copy; 2020-2021 [NotNypical](https://notnypical.github.io).

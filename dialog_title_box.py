@@ -30,10 +30,10 @@ class DialogTitleBox(QWidget):
         super().__init__(parent)
 
         logo = QSvgWidget()
-        logo.load(':/icons/apps/22/mediathekview.svg')
+        logo.load(":/icons/apps/22/mediathekview.svg")
 
-        name = QLabel(self.tr(f'<strong style="font-size:large;">{QApplication.applicationName()}</strong> v{QApplication.applicationVersion()}'))
-        description = QLabel(self.tr('A front-end tool for the MediathekView database'))
+        name = QLabel(self.tr("<strong style=\"font-size:large;\">{0}</strong> v{1}").format(QApplication.applicationName(), QApplication.applicationVersion()))
+        description = QLabel(self.tr("A front-end tool for the MediathekView database"))
 
         labels = QVBoxLayout()
         labels.addWidget(name)

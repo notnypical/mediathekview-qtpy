@@ -29,14 +29,14 @@ from main_window import MainWindow
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
-    app.setOrganizationName('NotNypical')
-    app.setOrganizationDomain('https://notnypical.github.io')
-    app.setApplicationName('MediathekView-QtPy')
-    app.setApplicationDisplayName('MediathekView-QtPy')
-    app.setApplicationVersion('0.1.0')
+    app.setOrganizationName("NotNypical")
+    app.setOrganizationDomain("https://notnypical.github.io")
+    app.setApplicationName("MediathekView-QtPy")
+    app.setApplicationDisplayName("MediathekView-QtPy")
+    app.setApplicationVersion("0.1.0")
 
     parser = QCommandLineParser()
-    parser.setApplicationDescription(QCoreApplication.translate('main', f'{app.applicationName()} - A front-end tool for the MediathekView database'))
+    parser.setApplicationDescription(QCoreApplication.translate("main", "{0} - A front-end tool for the MediathekView database").format(app.applicationName()))
     parser.addHelpOption()
     parser.addVersionOption()
     parser.process(app)

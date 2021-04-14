@@ -31,8 +31,9 @@ class PreferencesDatabasePage(QWidget):
         super().__init__(parent)
 
         # Title
-        title = QLabel(self.tr('<strong style="font-size:large;">Database</strong>'))
+        title = QLabel(self.tr("<strong style=\"font-size:large;\">{0}</strong>").format(self.title()))
 
+        #
         # Content
 
 
@@ -49,7 +50,7 @@ class PreferencesDatabasePage(QWidget):
 
     def title(self):
 
-        return self.tr('Database')
+        return self.tr("Database")
 
 
     def _onPreferencesChanged(self):

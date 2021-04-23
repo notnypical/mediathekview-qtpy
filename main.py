@@ -82,16 +82,24 @@ if __name__ == "__main__":
     languageListOption = QCommandLineOption(["language-list"],
         QCoreApplication.translate("main", "Lists available application languages."))
 
+    languageOption = QCommandLineOption(["language"],
+        QCoreApplication.translate("main", "Adjusts application language."),
+        QCoreApplication.translate("main", "language code"))
+
     parser = QCommandLineParser()
     parser.setApplicationDescription(QCoreApplication.translate("main", "{0} - A front-end tool for the MediathekView database").format(app.applicationName()))
     parser.addHelpOption()
     parser.addVersionOption()
-    parser.addOption(languageListOption);
+    parser.addOption(languageListOption)
+    parser.addOption(languageOption)
     parser.process(app)
 
     # Command line: Language list
     if parser.isSet(languageListOption):
         sys.exit(showLanguageList())
+
+    # Command line: Language
+    language = parser.value(languageOption)
 
 
     window = MainWindow()

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="he">
+<!DOCTYPE TS><TS version="1.1" language="he">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -219,11 +218,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main_window.py" line="121"/>
-        <source>Ãsterreichischer Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="main_window.py" line="122"/>
         <source>phoenix</source>
         <translation type="unfinished"></translation>
@@ -244,11 +238,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main_window.py" line="124"/>
-        <source>SaarlÃ¤ndischer Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="main_window.py" line="125"/>
         <source>SRF</source>
         <translation type="unfinished"></translation>
@@ -261,11 +250,6 @@
     <message>
         <location filename="main_window.py" line="126"/>
         <source>SWR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="126"/>
-        <source>SÃ¼dwestrundfunk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -311,11 +295,6 @@
     <message>
         <location filename="main_window.py" line="146"/>
         <source>Lengthy description of the application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="149"/>
-        <source>Preferencesâ¦</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -533,6 +512,26 @@
         <source>Exit the full screen mode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="main_window.py" line="121"/>
+        <source>&#xc3;&#x96;sterreichischer Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main_window.py" line="124"/>
+        <source>Saarl&#xc3;&#xa4;ndischer Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main_window.py" line="126"/>
+        <source>S&#xc3;&#xbc;dwestrundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main_window.py" line="149"/>
+        <source>Preferences&#xe2;&#x80;&#xa6;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesDatabasePage</name>
@@ -586,8 +585,38 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="main.py" line="39"/>
+        <location filename="main.py" line="90"/>
         <source>{0} - A front-end tool for the MediathekView database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.py" line="52"/>
+        <source>{0} ({1})</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.py" line="87"/>
+        <source>language code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.py" line="60"/>
+        <source>Usage: {0}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.py" line="61"/>
+        <source>Languages:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.py" line="83"/>
+        <source>Lists available application languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.py" line="86"/>
+        <source>Adjusts application language.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/translations">
-        <file alias="de">translations/mediathekview-qt_de.qm</file>
-        <file alias="en">translations/mediathekview-qt_en.qm</file>
-        <file alias="he">translations/mediathekview-qt_he.qm</file>
+        <file alias="de">translations/mediathekview-qtpy_de.qm</file>
+        <file alias="en">translations/mediathekview-qtpy_en.qm</file>
+        <file alias="he">translations/mediathekview-qtpy_he.qm</file>
     </qresource>
 </RCC>

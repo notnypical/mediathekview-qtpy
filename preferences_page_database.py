@@ -22,7 +22,7 @@ from PySide2.QtCore import Signal
 from PySide2.QtWidgets import QLabel, QVBoxLayout, QWidget
 
 
-class PreferencesDatabasePage(QWidget):
+class PreferencesPageDatabase(QWidget):
 
     preferencesChanged = Signal()
 

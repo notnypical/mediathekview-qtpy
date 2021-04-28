@@ -21,7 +21,7 @@
 from PySide2.QtWidgets import QDialog, QDialogButtonBox, QHBoxLayout, QListWidget, QStackedWidget, QVBoxLayout
 
 from preferences import Preferences
-from preferences_database_page import PreferencesDatabasePage
+from preferences_page_database import PreferencesPageDatabase
 from preferences_general_page import PreferencesGeneralPage
 
 
@@ -42,18 +42,18 @@ class PreferencesDialog(QDialog):
         self._generalPage.setZeroMargins()
         self._generalPage.preferencesChanged.connect(self._onPreferencesChanged)
 
-        self._databasePage = PreferencesDatabasePage()
-        self._databasePage.setZeroMargins()
-        self._databasePage.preferencesChanged.connect(self._onPreferencesChanged)
+        self._pageDatabase = PreferencesPageDatabase()
+        self._pageDatabase.setZeroMargins()
+        self._pageDatabase.preferencesChanged.connect(self._onPreferencesChanged)
 
         stackedBox = QStackedWidget()
         stackedBox.addWidget(self._generalPage)
-        stackedBox.addWidget(self._databasePage)
+        stackedBox.addWidget(self._pageDatabase)
         stackedBox.setCurrentIndex(0)
 
         listBox = QListWidget()
         listBox.addItem(self._generalPage.title())
-        listBox.addItem(self._databasePage.title())
+        listBox.addItem(self._pageDatabase.title())
         listBox.setCurrentRow(stackedBox.currentIndex())
         listBox.currentRowChanged.connect(stackedBox.setCurrentIndex)
 

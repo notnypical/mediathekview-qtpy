@@ -183,7 +183,7 @@ class ColophonPageEnvironment(QWidget):
 # Colophon page: License
 #
 
-class ColophonLicensePage(QWidget):
+class ColophonPageLicense(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)

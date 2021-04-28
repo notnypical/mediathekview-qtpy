@@ -11,8 +11,8 @@
         "main_window.py",
         "preferences.py",
         "preferences_dialog.py",
-        "preferences_general_page.py",
         "preferences_page_database.py",
+        "preferences_page_general.py",
         "translations.qrc"
     ]
 }

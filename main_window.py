@@ -20,7 +20,7 @@
 
 from PySide2.QtCore import QByteArray, QSettings, Qt
 from PySide2.QtGui import QIcon, QKeySequence
-from PySide2.QtWidgets import QAction, QApplication, QMainWindow
+from PySide2.QtWidgets import QAction, QApplication, QMainWindow, QStatusBar
 
 from about_dialog import AboutDialog
 from colophon_dialog import ColophonDialog
@@ -48,6 +48,7 @@ class MainWindow(QMainWindow):
         self._createActions()
         self._createMenus()
         self._createToolBars()
+        self._createStatusBar()
 
         self._loadSettings()
 
@@ -336,6 +337,11 @@ class MainWindow(QMainWindow):
         self._toolbarHelp.setObjectName("toolbarHelp")
         self._toolbarHelp.addAction(self._actionKeyboardShortcuts)
         self._toolbarHelp.visibilityChanged.connect(lambda visible: self._actionToolbarHelp.setChecked(visible))
+
+
+    def _createStatusBar(self):
+
+        self._statusbar = self.statusBar()
 
 
     def _updateActionChannels(self, invert=False):

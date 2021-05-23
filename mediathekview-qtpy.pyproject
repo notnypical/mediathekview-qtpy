@@ -8,11 +8,11 @@
         "keyboard_shortcuts_dialog.py",
         "keyboard_shortcuts_page.py",
         "main.py",
-        "main_window.py",
         "preferences.py",
         "preferences_dialog.py",
         "preferences_page_database.py",
         "preferences_page_general.py",
-        "translations.qrc"
+        "translations.qrc",
+        "window.py"
     ]
 }

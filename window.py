@@ -18,7 +18,7 @@
 # along with MediathekView-QtPy.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-from PySide2.QtCore import QByteArray, QSettings, Qt
+from PySide2.QtCore import QByteArray, QSettings, Qt, Signal
 from PySide2.QtGui import QIcon, QKeySequence
 from PySide2.QtWidgets import QAction, QApplication, QMainWindow, QStatusBar
 
@@ -32,6 +32,9 @@ import icons_rc
 
 
 class Window(QMainWindow):
+
+    actionTextChanged = Signal()
+
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -382,6 +385,8 @@ class Window(QMainWindow):
             self._actionFullScreen.setChecked(True)
             self._actionFullScreen.setToolTip(self.tr("Exit the full screen mode"))
 
+        self.actionTextChanged.emit();
+
 
     def _onActionAboutTriggered(self):
 
@@ -435,6 +440,7 @@ class Window(QMainWindow):
 
         if not self._keyboardShortcutsDialog:
             self._keyboardShortcutsDialog = KeyboardShortcutsDialog(self)
+            self.actionTextChanged.connect(self._keyboardShortcutsDialog.onActionTextChanged)
 
         self._keyboardShortcutsDialog.show()
         self._keyboardShortcutsDialog.raise_()

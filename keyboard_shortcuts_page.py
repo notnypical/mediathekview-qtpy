@@ -64,3 +64,7 @@ class KeyboardShortcutsPage(QWidget):
     def title(self):
 
         return self.tr("Keyboard Shortcuts")
+
+
+    def onActionTextChanged(self):
+        pass

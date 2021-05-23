@@ -18,13 +18,16 @@
 # along with MediathekView-QtPy.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-from PySide2.QtCore import Qt
+from PySide2.QtCore import Qt, Signal
 from PySide2.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout
 
 from keyboard_shortcuts_page import KeyboardShortcutsPage
 
 
 class KeyboardShortcutsDialog(QDialog):
+
+    actionTextChanged = Signal()
+
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -36,6 +39,7 @@ class KeyboardShortcutsDialog(QDialog):
         # Content
         keyboardShortcutsPage = KeyboardShortcutsPage(self.parentWidget())
         keyboardShortcutsPage.setZeroMargins()
+        self.actionTextChanged.connect(keyboardShortcutsPage.onActionTextChanged)
 
         # Button box
         buttonBox = QDialogButtonBox(QDialogButtonBox.Close)
@@ -45,3 +49,8 @@ class KeyboardShortcutsDialog(QDialog):
         layout = QVBoxLayout(self)
         layout.addWidget(keyboardShortcutsPage)
         layout.addWidget(buttonBox)
+
+
+    def onActionTextChanged(self):
+
+        self.actionTextChanged.emit()

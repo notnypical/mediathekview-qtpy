@@ -15,8 +15,21 @@ MediathekView-QtPy is an open source front-end tool written in Qt for Python and
 ### Resources
 
 The resource collection files are converted to Python modules by using the resource compiler rcc:  
+
+Qt 5.14 or later:  
 ```rcc -g python icons.qrc -o icons_rc.py```  
 ```rcc -g python translations.qrc -o translations_rc.py```
+
+Qt 5.13 or older:  
+```pyside2-rcc icons.qrc -o icons_rc.py```  
+```pyside2-rcc translations.qrc -o translations_rc.py```
+
+
+### Translations
+
+The translation TS files are converted to QM files by using the lrelease command line tool:  
+
+```lrelease translations/*.ts```  
 
 
 ## Copyright

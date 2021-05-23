@@ -9,27 +9,12 @@
     </message>
 </context>
 <context>
-    <name>ColophonAboutPage</name>
-</context>
-<context>
-    <name>ColophonAuthorsPage</name>
-</context>
-<context>
-    <name>ColophonCreditsPage</name>
-</context>
-<context>
     <name>ColophonDialog</name>
     <message>
         <location filename="colophon_dialog.py" line="35"/>
         <source>Colophon</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>ColophonEnvironmentPage</name>
-</context>
-<context>
-    <name>ColophonLicensePage</name>
 </context>
 <context>
     <name>ColophonPageAbout</name>
@@ -112,7 +97,7 @@
 <context>
     <name>KeyboardShortcutsDialog</name>
     <message>
-        <location filename="keyboard_shortcuts_dialog.py" line="34"/>
+        <location filename="keyboard_shortcuts_dialog.py" line="37"/>
         <source>Keyboard Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -135,7 +120,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="keyboard_shortcuts_page.py" line="67"/>
+        <location filename="keyboard_shortcuts_page.py" line="70"/>
         <source>Keyboard Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -143,423 +128,30 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="main_window.py" line="112"/>
-        <source>3sat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="113"/>
-        <source>ARD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="113"/>
-        <source>Das Erste</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="114"/>
-        <source>ARTE.de</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="115"/>
-        <source>ARTE.fr</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="116"/>
-        <source>BR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="116"/>
-        <source>Bayerischer Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="117"/>
-        <source>DW TV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="117"/>
-        <source>Deutsche Welle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="118"/>
-        <source>HR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="118"/>
-        <source>Hessischer Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="119"/>
-        <source>KiKA</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="119"/>
-        <source>Kinderkanal von ARD und ZDF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="120"/>
-        <source>MDR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="120"/>
-        <source>Mitteldeutscher Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="121"/>
-        <source>NDR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="121"/>
-        <source>Norddeutscher Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="122"/>
-        <source>ORF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="123"/>
-        <source>phoenix</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="124"/>
-        <source>RBB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="124"/>
-        <source>Rundfunk Berlin-Brandenburg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="125"/>
-        <source>SR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="126"/>
-        <source>SRF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="126"/>
-        <source>Schweizer Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="127"/>
-        <source>SWR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="128"/>
-        <source>WDR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="128"/>
-        <source>Westdeutscher Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="129"/>
-        <source>ZDF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="133"/>
-        <source>Zweites Deutsches Fernsehen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="138"/>
-        <source>About {0}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="141"/>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="142"/>
-        <source>Brief description of the application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="145"/>
-        <source>Colophon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="147"/>
-        <source>Lengthy description of the application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="153"/>
-        <source>Customize the appearance and behavior of the application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="156"/>
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="160"/>
-        <source>Quit the application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="166"/>
-        <source>Live Streams</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="169"/>
-        <source>Live</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="171"/>
-        <source>Show all live streaming channels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="177"/>
-        <source>{0} ({1})</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="188"/>
-        <source>Invert Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="191"/>
-        <source>Invert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="193"/>
-        <source>Invert list of selected channels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="199"/>
-        <source>Update Database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="202"/>
-        <source>Update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="204"/>
-        <source>Update the local database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="212"/>
-        <source>Full Screen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="217"/>
-        <source>Show Application Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="220"/>
-        <source>Display the Application toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="223"/>
-        <source>Show Channels Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="226"/>
-        <source>Display the Channels toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="229"/>
-        <source>Show Tools Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="232"/>
-        <source>Display the Tools toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="235"/>
-        <source>Show View Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="238"/>
-        <source>Display the View toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="241"/>
-        <source>Show Help Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="244"/>
-        <source>Display the Help toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="257"/>
-        <source>Keyboard Shortcuts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="260"/>
-        <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="261"/>
-        <source>List of all keyboard shortcuts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="main_window.py" line="268"/>
         <source>Application</source>
-        <translation>יישום</translation>
+        <translation type="obsolete">יישום</translation>
     </message>
     <message>
         <location filename="main_window.py" line="278"/>
         <source>Channels</source>
-        <translation>ערוץ טלוויזיה</translation>
+        <translation type="obsolete">ערוץ טלוויזיה</translation>
     </message>
     <message>
         <location filename="main_window.py" line="287"/>
         <source>Tools</source>
-        <translation>כלים</translation>
+        <translation type="obsolete">כלים</translation>
     </message>
     <message>
         <location filename="main_window.py" line="292"/>
         <source>View</source>
-        <translation>נוף</translation>
+        <translation type="obsolete">נוף</translation>
     </message>
     <message>
         <location filename="main_window.py" line="305"/>
         <source>Help</source>
-        <translation>עֶזרָה</translation>
+        <translation type="obsolete">עֶזרָה</translation>
     </message>
-    <message>
-        <location filename="main_window.py" line="313"/>
-        <source>Application Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="322"/>
-        <source>Channels Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="333"/>
-        <source>Tools Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="339"/>
-        <source>View Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="345"/>
-        <source>Help Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="367"/>
-        <source>Show all programs of channel {0}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="369"/>
-        <source>Hide all programs of channel {0}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="375"/>
-        <source>Full Screen Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="378"/>
-        <source>Display the window in full screen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="380"/>
-        <source>Exit Full Screen Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="383"/>
-        <source>Exit the full screen mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="122"/>
-        <source>&#xc3;&#x96;sterreichischer Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="125"/>
-        <source>Saarl&#xc3;&#xa4;ndischer Rundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="127"/>
-        <source>S&#xc3;&#xbc;dwestrundfunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="150"/>
-        <source>Preferences&#xe2;&#x80;&#xa6;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="247"/>
-        <source>Show Statusbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="main_window.py" line="251"/>
-        <source>Display the statusbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PreferencesDatabasePage</name>
 </context>
 <context>
     <name>PreferencesDialog</name>
@@ -568,9 +160,6 @@
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>PreferencesGeneralPage</name>
 </context>
 <context>
     <name>PreferencesPageDatabase</name>
@@ -593,23 +182,441 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="preferences_page_general.py" line="39"/>
+        <location filename="preferences_page_general.py" line="40"/>
         <source>Save and restore the application geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="preferences_page_general.py" line="42"/>
+        <location filename="preferences_page_general.py" line="43"/>
         <source>Save and restore the application state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="preferences_page_general.py" line="49"/>
+        <location filename="preferences_page_general.py" line="50"/>
         <source>Geometry &amp;&amp; State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="preferences_page_general.py" line="69"/>
+        <location filename="preferences_page_general.py" line="71"/>
         <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Window</name>
+    <message>
+        <location filename="window.py" line="115"/>
+        <source>3sat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="116"/>
+        <source>ARD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="116"/>
+        <source>Das Erste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="117"/>
+        <source>ARTE.de</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="118"/>
+        <source>ARTE.fr</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="119"/>
+        <source>BR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="119"/>
+        <source>Bayerischer Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="120"/>
+        <source>DW TV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="120"/>
+        <source>Deutsche Welle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="121"/>
+        <source>HR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="121"/>
+        <source>Hessischer Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="122"/>
+        <source>KiKA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="122"/>
+        <source>Kinderkanal von ARD und ZDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="123"/>
+        <source>MDR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="123"/>
+        <source>Mitteldeutscher Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="124"/>
+        <source>NDR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="124"/>
+        <source>Norddeutscher Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="125"/>
+        <source>ORF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="125"/>
+        <source>&#xc3;&#x96;sterreichischer Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="126"/>
+        <source>phoenix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="127"/>
+        <source>RBB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="127"/>
+        <source>Rundfunk Berlin-Brandenburg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="128"/>
+        <source>SR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="128"/>
+        <source>Saarl&#xc3;&#xa4;ndischer Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="129"/>
+        <source>SRF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="129"/>
+        <source>Schweizer Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="130"/>
+        <source>SWR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="130"/>
+        <source>S&#xc3;&#xbc;dwestrundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="131"/>
+        <source>WDR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="131"/>
+        <source>Westdeutscher Rundfunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="132"/>
+        <source>ZDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="136"/>
+        <source>Zweites Deutsches Fernsehen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="141"/>
+        <source>About {0}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="144"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="145"/>
+        <source>Brief description of the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="148"/>
+        <source>Colophon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="150"/>
+        <source>Lengthy description of the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="153"/>
+        <source>Preferences&#xe2;&#x80;&#xa6;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="156"/>
+        <source>Customize the appearance and behavior of the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="159"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="163"/>
+        <source>Quit the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="170"/>
+        <source>Live Streams</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="173"/>
+        <source>Live</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="175"/>
+        <source>Show all live streaming channels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="181"/>
+        <source>{0} ({1})</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="192"/>
+        <source>Invert Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="195"/>
+        <source>Invert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="197"/>
+        <source>Invert list of selected channels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="204"/>
+        <source>Update Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="207"/>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="209"/>
+        <source>Update the local database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="218"/>
+        <source>Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="223"/>
+        <source>Show Application Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="226"/>
+        <source>Display the Application toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="229"/>
+        <source>Show Channels Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="232"/>
+        <source>Display the Channels toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="235"/>
+        <source>Show Tools Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="238"/>
+        <source>Display the Tools toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="241"/>
+        <source>Show View Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="244"/>
+        <source>Display the View toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="247"/>
+        <source>Show Help Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="250"/>
+        <source>Display the Help toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="253"/>
+        <source>Show Statusbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="257"/>
+        <source>Display the statusbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="264"/>
+        <source>Keyboard Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="267"/>
+        <source>Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="268"/>
+        <source>List of all keyboard shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="275"/>
+        <source>Application</source>
+        <translation type="unfinished">יישום</translation>
+    </message>
+    <message>
+        <location filename="window.py" line="285"/>
+        <source>Channels</source>
+        <translation type="unfinished">ערוץ טלוויזיה</translation>
+    </message>
+    <message>
+        <location filename="window.py" line="294"/>
+        <source>Tools</source>
+        <translation type="unfinished">כלים</translation>
+    </message>
+    <message>
+        <location filename="window.py" line="299"/>
+        <source>View</source>
+        <translation type="unfinished">נוף</translation>
+    </message>
+    <message>
+        <location filename="window.py" line="312"/>
+        <source>Help</source>
+        <translation type="unfinished">עֶזרָה</translation>
+    </message>
+    <message>
+        <location filename="window.py" line="320"/>
+        <source>Application Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="329"/>
+        <source>Channels Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="340"/>
+        <source>Tools Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="346"/>
+        <source>View Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="352"/>
+        <source>Help Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="366"/>
+        <source>Full Screen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="369"/>
+        <source>Display the window in full screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="371"/>
+        <source>Exit Full Screen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="374"/>
+        <source>Exit the full screen mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="390"/>
+        <source>Show all programs of channel {0}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="window.py" line="392"/>
+        <source>Hide all programs of channel {0}</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

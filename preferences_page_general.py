@@ -33,6 +33,7 @@ class PreferencesPageGeneral(QWidget):
         # Title
         title = QLabel(self.tr("<strong style=\"font-size:large;\">{0}</strong>").format(self.title()))
 
+
         #
         # Content: Geometry & State
 
@@ -48,6 +49,7 @@ class PreferencesPageGeneral(QWidget):
 
         geometryStateGroup = QGroupBox(self.tr("Geometry && State"))
         geometryStateGroup.setLayout(geometryStateLayout)
+
 
         # Main layout
         self._layout = QVBoxLayout(self)
@@ -71,21 +73,21 @@ class PreferencesPageGeneral(QWidget):
         self.preferencesChanged.emit()
 
 
-    def setRestoreApplicationGeometry(self, checked):
-
-        self._chkRestoreApplicationGeometry.setChecked(checked)
-
-
     def restoreApplicationGeometry(self):
 
         return self._chkRestoreApplicationGeometry.isChecked()
 
 
-    def setRestoreApplicationState(self, checked):
+    def setRestoreApplicationGeometry(self, checked):
 
-        self._chkRestoreApplicationState.setChecked(checked)
+        self._chkRestoreApplicationGeometry.setChecked(checked)
 
 
     def restoreApplicationState(self):
 
         return self._chkRestoreApplicationState.isChecked()
+
+
+    def setRestoreApplicationState(self, checked):
+
+        self._chkRestoreApplicationState.setChecked(checked)

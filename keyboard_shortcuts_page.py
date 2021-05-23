@@ -42,6 +42,7 @@ class KeyboardShortcutsPage(QWidget):
         for actionItem in mainWindow.findChildren(QAction):
 
             if not actionItem.shortcut().isEmpty():
+
                 idx = tableBox.rowCount()
 
                 tableBox.setRowCount(idx + 1)

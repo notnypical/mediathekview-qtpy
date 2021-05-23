@@ -55,8 +55,8 @@ class Window(QMainWindow):
 
         self._loadSettings()
 
-        self._updateActionChannels()
         self._updateActionFullScreen()
+        self._updateActionsChannels()
 
 
     def closeEvent(self, event):
@@ -163,6 +163,7 @@ class Window(QMainWindow):
         self._actionQuit.setToolTip(self.tr("Quit the application"))
         self._actionQuit.triggered.connect(self.close)
 
+
         #
         # Action: Channels
 
@@ -174,7 +175,7 @@ class Window(QMainWindow):
         self._actionLiveStreams.setToolTip(self.tr("Show all live streaming channels"))
         self._actionLiveStreams.toggled.connect(lambda checked: self._onActionLiveStreamsToggled(checked))
 
-        self._actionChannels = []
+        self._actionsChannels = []
         for key, value in sorted(self._listChannels.items()):
 
             text = self.tr("{0} ({1})").format(value[0], value[1]) if value[1] else value[0]
@@ -184,9 +185,9 @@ class Window(QMainWindow):
             actionChannel.setIconText(value[0])
             actionChannel.setCheckable(True)
             actionChannel.setData(key)
-            actionChannel.toggled.connect(lambda checked, channel=actionChannel.data() : self._onActionChannelsToggled(checked, channel))
+            actionChannel.toggled.connect(lambda checked, channel=actionChannel.data() : self._onActionChannelToggled(checked, channel))
 
-            self._actionChannels.append(actionChannel)
+            self._actionsChannels.append(actionChannel)
 
         self._actionSelectInvert = QAction(self.tr("Invert Selection"), self)
         self._actionSelectInvert.setObjectName("actionSelectInvert")
@@ -195,6 +196,7 @@ class Window(QMainWindow):
         self._actionSelectInvert.setCheckable(True)
         self._actionSelectInvert.setToolTip(self.tr("Invert list of selected channels"))
         self._actionSelectInvert.toggled.connect(lambda checked: self._onActionSelectInvertToggled(checked))
+
 
         #
         # Actions: Tools
@@ -206,6 +208,7 @@ class Window(QMainWindow):
         self._actionUpdate.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_F5))
         self._actionUpdate.setToolTip(self.tr("Update the local database"))
         self._actionUpdate.triggered.connect(self._onActionUpdateTriggered)
+
 
         #
         # Actions: View
@@ -254,6 +257,7 @@ class Window(QMainWindow):
         self._actionStatusbar.setToolTip(self.tr("Display the statusbar"))
         self._actionStatusbar.toggled.connect(lambda checked: self._statusbar.setVisible(checked))
 
+
         #
         # Actions: Help
 
@@ -282,7 +286,7 @@ class Window(QMainWindow):
         menuChannels.setObjectName("menuChannels")
         menuChannels.addAction(self._actionLiveStreams)
         menuChannels.addSeparator()
-        menuChannels.addActions(self._actionChannels)
+        menuChannels.addActions(self._actionsChannels)
         menuChannels.addSeparator()
         menuChannels.addAction(self._actionSelectInvert)
 
@@ -327,7 +331,7 @@ class Window(QMainWindow):
         self._toolbarChannels.setStyleSheet("*[invertChannel=true] { text-decoration: line-through; }")
         self._toolbarChannels.addAction(self._actionLiveStreams)
         self._toolbarChannels.addSeparator()
-        self._toolbarChannels.addActions(self._actionChannels)
+        self._toolbarChannels.addActions(self._actionsChannels)
         self._toolbarChannels.addSeparator()
         self._toolbarChannels.addAction(self._actionSelectInvert)
         self._toolbarChannels.visibilityChanged.connect(lambda visible: self._actionToolbarChannels.setChecked(visible))
@@ -356,22 +360,6 @@ class Window(QMainWindow):
         self._statusbar = self.statusBar()
 
 
-    def _updateActionChannels(self, invert=False):
-
-        # Tool buttons
-        for idx in range(len(self._actionChannels)):
-
-            widget = self._toolbarChannels.widgetForAction(self._actionChannels[idx])
-            widget.setProperty("invertChannel", invert)
-            widget.style().unpolish(widget)
-            widget.style().polish(widget)
-
-            if not invert:
-                self._actionChannels[idx].setToolTip(self.tr("Show all programs of channel {0}").format(self._actionChannels[idx].text()))
-            else:
-                self._actionChannels[idx].setToolTip(self.tr("Hide all programs of channel {0}").format(self._actionChannels[idx].text()))
-
-
     def _updateActionFullScreen(self):
 
         if not self.isFullScreen():
@@ -386,6 +374,22 @@ class Window(QMainWindow):
             self._actionFullScreen.setToolTip(self.tr("Exit the full screen mode"))
 
         self.actionTextChanged.emit();
+
+
+    def _updateActionsChannels(self, invert=False):
+
+        # Tool buttons
+        for idx in range(len(self._actionsChannels)):
+
+            widget = self._toolbarChannels.widgetForAction(self._actionsChannels[idx])
+            widget.setProperty("invertChannel", invert)
+            widget.style().unpolish(widget)
+            widget.style().polish(widget)
+
+            if not invert:
+                self._actionsChannels[idx].setToolTip(self.tr("Show all programs of channel {0}").format(self._actionsChannels[idx].text()))
+            else:
+                self._actionsChannels[idx].setToolTip(self.tr("Hide all programs of channel {0}").format(self._actionsChannels[idx].text()))
 
 
     def _onActionAboutTriggered(self):
@@ -413,13 +417,13 @@ class Window(QMainWindow):
         pass
 
 
-    def _onActionChannelsToggled(self, checked, channel):
+    def _onActionChannelToggled(self, checked, channel):
         pass
 
 
     def _onActionSelectInvertToggled(self, checked):
 
-        self._updateActionChannels(checked)
+        self._updateActionsChannels(checked)
 
 
     def _onActionUpdateTriggered(self):

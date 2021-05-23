@@ -80,17 +80,17 @@ class PreferencesDialog(QDialog):
         self._buttonApply.setEnabled(False)
 
 
+    def preferences(self):
+
+        return self._preferences
+
+
     def setPreferences(self, preferences):
 
         self._preferences = preferences
 
         self._updatePreferences()
         self._buttonApply.setEnabled(False)
-
-
-    def preferences(self):
-
-        return self._preferences
 
 
     def _onPreferencesChanged(self):

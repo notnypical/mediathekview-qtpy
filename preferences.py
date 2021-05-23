@@ -63,21 +63,21 @@ class Preferences:
         return value.lower() == "true" if isinstance(value, str) else bool(value)
 
 
-    def setRestoreApplicationGeometry(self, value):
-
-        self._restoreApplicationGeometry = value
-
-
     def restoreApplicationGeometry(self, isDefault=False):
 
         return self._restoreApplicationGeometry if not isDefault else True
 
 
-    def setRestoreApplicationState(self, value):
+    def setRestoreApplicationGeometry(self, restore):
 
-        self._restoreApplicationState = value
+        self._restoreApplicationGeometry = restore
 
 
     def restoreApplicationState(self, isDefault=False):
 
         return self._restoreApplicationState if not isDefault else True
+
+
+    def setRestoreApplicationState(self, restore):
+
+        self._restoreApplicationState = restore

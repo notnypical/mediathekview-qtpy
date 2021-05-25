@@ -49,8 +49,3 @@ class KeyboardShortcutsDialog(QDialog):
         layout = QVBoxLayout(self)
         layout.addWidget(keyboardShortcutsPage)
         layout.addWidget(buttonBox)
-
-
-    def onActionTextChanged(self):
-
-        self.actionTextChanged.emit()

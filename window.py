@@ -444,7 +444,7 @@ class Window(QMainWindow):
 
         if not self._keyboardShortcutsDialog:
             self._keyboardShortcutsDialog = KeyboardShortcutsDialog(self)
-            self.actionTextChanged.connect(self._keyboardShortcutsDialog.onActionTextChanged)
+            self.actionTextChanged.connect(self._keyboardShortcutsDialog.actionTextChanged)
 
         self._keyboardShortcutsDialog.show()
         self._keyboardShortcutsDialog.raise_()
